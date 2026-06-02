@@ -1,0 +1,18 @@
+# OS
+.DS_Store
+
+# 内部資料・素材ソース（公開リポジトリには含めない）
+*.zip
+*.md
+_incoming/
+
+# デプロイ/依存
+.vercel/
+node_modules/
+
+# 未使用の中間素材（HTML非参照）
+images/image.png
+images/image copy.png
+images/upscaled_output_v4.png
+images/ChatGPT*.png
+images/shecraft-logo-white.png
