@@ -95,9 +95,12 @@
   .ssub{font-size:15.5px;color:var(--ink-2);margin-top:18px;line-height:2.05;font-weight:500;}
   @media(max-width:740px){section{padding:68px 0;} .stitle{font-size:25px;}}
 
-  /* HERO（完成版バナー画像・全幅） */
-  .hero{position:relative;padding:0;background:#FFF6F2;}
+  /* HERO（完成版バナー画像・全幅／ヘッダー帯と被らないよう上に余白） */
+  .hero{position:relative;padding:78px 0 0;background:#FFF6F2;}
   .hero-img{width:100%;display:block;}
+  @media(max-width:740px){.hero{padding-top:64px;}}
+  /* 強調（“ ”の多用をやめ、色で見せる） */
+  .em{color:var(--coral-d);font-weight:700;font-style:normal;}
 
   /* role models */
   .rm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:48px;}
@@ -395,10 +398,10 @@
       <div class="voice reveal">AIは気になるけど、何から始めればいいか分からない。</div>
       <div class="voice reveal">子どもや家族との時間を、大事にしながら働きたい。</div>
       <div class="voice reveal">在宅で、自分のスキルで収入を得られたら…。</div>
-      <div class="voice reveal">会社や誰かに頼りきりじゃない、“自分の力”がほしい。</div>
+      <div class="voice reveal">会社や誰かに頼りきりじゃない、<span class="em">自分の力</span>がほしい。</div>
       <div class="voice reveal">私、このままでいいのかな？</div>
     </div>
-    <p class="bridge reveal">その気持ち、AIで“形”にできます。</p>
+    <p class="bridge reveal">その気持ち、AIで<span class="em">形</span>にできます。</p>
   </div>
 </section>
 
@@ -408,7 +411,7 @@
     <span class="eyebrow reveal">ABOUT</span>
     <h2 class="stitle reveal">SHEcraft<span class="accent">とは？</span></h2>
     <p class="about-state reveal">SHEcraft（シークラフト）は、<br>女性のための、AIクリエイタースクールです。</p>
-    <p class="about-desc reveal">AIを使って、Webサイト・アプリ・画像・動画を“自分の手でつくれる”ように。「AIに話しかけてつくる」（＝いま話題のバイブコーディング）を主軸に学び、自分の作品（ポートフォリオ）を持って、副業・案件獲得までを目指す、実践型スクールです。最初の90日で“つくれる”を実感し、半年かけてじっくり案件獲得まで伴走します。プログラミングは未経験でも大丈夫。育休・時短・在宅といった、あなたのライフステージに合わせて進められます。</p>
+    <p class="about-desc reveal">AIを使って、Webサイト・アプリ・画像・動画を<span class="em">自分の手でつくれる</span>ように。「AIに話しかけてつくる」（＝いま話題のバイブコーディング）を主軸に学び、自分の作品（ポートフォリオ）を持って、副業・案件獲得までを目指す、実践型スクールです。最初の90日で<span class="em">つくれる</span>を実感し、半年かけてじっくり案件獲得まで伴走します。プログラミングは未経験でも大丈夫。育休・時短・在宅といった、あなたのライフステージに合わせて進められます。</p>
     <div class="facts">
       <div class="fact reveal"><div class="ft">期間</div><div class="fv">半年伴走<br>90日でつくる目安</div></div>
       <div class="fact reveal"><div class="ft">対象</div><div class="fv">AI・プログラミング<br>未経験OK</div></div>
@@ -483,7 +486,7 @@
     <div class="promise">
       <div class="pcard reveal">
         <div class="lab">Mission</div>
-        <h3 class="zen">AIで“つくる力”を女性に渡し、<br>自分の人生を、自分の手で再設計する。</h3>
+        <h3 class="zen">AIで<span class="em">つくる力</span>を女性に渡し、<br>自分の人生を、自分の手で再設計する。</h3>
         <p>つくれる → 稼げる、までやりきる。頑張っている人が、ちゃんと報われる世界をつくります。</p>
       </div>
       <div class="pcard reveal">
@@ -507,9 +510,9 @@
       <img class="ph reveal" src="images/why-01.jpg" alt="窓際でノートPCに向かい、作りながら学ぶ女性">
       <div class="reason-txt reveal">
         <div class="reason-num"><b>01</b>つくる力が、ちゃんと身につく</div>
-        <h3 class="zen">未経験からでも、<br>“一人で作れる”まで。</h3>
+        <h3 class="zen">未経験からでも、<br><span class="em">一人で作れる</span>まで。</h3>
         <ul>
-          <li><span class="ck">✓</span><span>まずマニュアル通りに作り、慣れたら<b>自由課題</b>へ。一歩ずつ“作れる”が増える。</span></li>
+          <li><span class="ck">✓</span><span>まずマニュアル通りに作り、慣れたら<b>自由課題</b>へ。一歩ずつ<span class="em">作れる</span>が増える。</span></li>
           <li><span class="ck">✓</span><span>1日30分から進められる動画教材で、<b>育児や仕事と両立</b>できる。</span></li>
         </ul>
       </div>
@@ -518,7 +521,7 @@
     <div class="reason rev">
       <div class="reason-txt reveal">
         <div class="reason-num"><b>02</b>「学んで終わり」にしない</div>
-        <h3 class="zen">作れるだけでなく、<br>“稼げる”ところまで。</h3>
+        <h3 class="zen">作れるだけでなく、<br><span class="em">稼げる</span>ところまで。</h3>
         <ul>
           <li><span class="ck">✓</span><span>後半は<b>営業フェーズ</b>。提案・受注・納品まで実際の1サイクルを回す。</span></li>
           <li><span class="ck">✓</span><span>CS徹底が、最大の差別化。<b>受講生の成功と満足</b>を、最優先で伴走する。</span></li>
@@ -554,14 +557,14 @@
     <div class="center">
       <span class="eyebrow reveal">KEY SKILL</span>
       <h2 class="stitle reveal">そもそも、<span class="accent">バイブコーディング</span>って？</h2>
-      <p class="ssub reveal">むずかしそうな名前ですが、やることはシンプル。AIに「こんなサイトを作って」と“話しかける”だけで、Webサイトやアプリが形になる、いま世界で広がっている新しいものづくりの方法です。</p>
+      <p class="ssub reveal">むずかしそうな名前ですが、やることはシンプル。AIに「こんなサイトを作って」と<span class="em">話しかける</span>だけで、Webサイトやアプリが形になる、いま世界で広がっている新しいものづくりの方法です。</p>
     </div>
     <div class="vibe-steps">
-      <div class="vstep reveal"><div class="vic"><img src="images/icon-step-talk.png" alt=""></div><div class="vn">STEP 01</div><h4>日本語で“お願い”する</h4><p>「カフェの予約サイトを作って」と、ふだんの言葉で伝えるだけ。</p></div>
+      <div class="vstep reveal"><div class="vic"><img src="images/icon-step-talk.png" alt=""></div><div class="vn">STEP 01</div><h4>日本語で<span class="em">お願い</span>する</h4><p>「カフェの予約サイトを作って」と、ふだんの言葉で伝えるだけ。</p></div>
       <div class="vstep reveal"><div class="vic"><img src="images/icon-step-ai.png" alt=""></div><div class="vn">STEP 02</div><h4>AIがつくってくれる</h4><p>面倒な専門作業（コード）は、ぜんぶAIにおまかせ。</p></div>
       <div class="vstep reveal"><div class="vic"><img src="images/icon-step-screen.png" alt=""></div><div class="vn">STEP 03</div><h4>見て、言葉で直す</h4><p>できあがりを見ながら「ここを青く」と話すだけで完成へ。</p></div>
     </div>
-    <p class="vibe-note reveal">コードが書けなくても、センスや専門知識がなくても大丈夫。<br>“言葉にできれば、つくれる”時代です。</p>
+    <p class="vibe-note reveal">コードが書けなくても、センスや専門知識がなくても大丈夫。<br><span class="em">言葉にできれば、つくれる</span>時代です。</p>
 
     <div class="vibe-demo reveal">
       <div class="vibe-demo-head">
@@ -600,7 +603,7 @@
     <div class="center">
       <span class="eyebrow reveal">FLOW</span>
       <h2 class="stitle reveal">入会後の、<span class="accent">受講の流れ</span>。</h2>
-      <p class="ssub reveal">「入ったあと、何をするの？」がはっきり分かるように。90日で“つくれる”、半年で“稼げる”まで、5つのステップで進みます。</p>
+      <p class="ssub reveal">「入ったあと、何をするの？」がはっきり分かるように。90日で<span class="em">つくれる</span>、半年で<span class="em">稼げる</span>まで、5つのステップで進みます。</p>
     </div>
     <div class="flow">
       <div class="fstep act reveal">
@@ -646,7 +649,7 @@
         </tr></thead>
         <tbody>
           <tr><td class="row">女性専用の設計</td><td class="x mk">✕</td><td class="o mk">◯</td><td class="us">◎</td></tr>
-          <tr><td class="row">AIで“つくる”実装力</td><td class="o mk">◯</td><td class="x mk">△</td><td class="us">◎</td></tr>
+          <tr><td class="row">AIで<span class="em">つくる</span>実装力</td><td class="o mk">◯</td><td class="x mk">△</td><td class="us">◎</td></tr>
           <tr><td class="row">案件獲得まで伴走</td><td class="x mk">△</td><td class="x mk">△</td><td class="us">◎</td></tr>
           <tr><td class="row">女性だけのコミュニティ</td><td class="x mk">✕</td><td class="o mk">◯</td><td class="us">◎</td></tr>
           <tr><td class="row">育休・時短に合わせた進度</td><td class="x mk">✕</td><td class="o mk">◯</td><td class="us">◎</td></tr>
@@ -696,7 +699,7 @@
     </div>
     <div class="faq">
       <details class="q reveal"><summary>AIもプログラミングも完全に未経験ですが、大丈夫ですか？</summary><div class="a">はい。受講生のほとんどが未経験スタートを想定しています。最初に環境を整え、基礎から丁寧に進むので、「ChatGPTを少し触ったことがある」程度でまったく問題ありません。</div></details>
-      <details class="q reveal"><summary>育児や時短勤務と両立できますか？</summary><div class="a">育休中・時短・在宅の女性を想定して、ゆとりのある半年で設計しています。最初の90日で“つくれる”を目指し、その後は案件獲得まで伴走。1日30分から進められる教材と、ライフステージに合わせた伴走で、生活に無理なく組み込めます。</div></details>
+      <details class="q reveal"><summary>育児や時短勤務と両立できますか？</summary><div class="a">育休中・時短・在宅の女性を想定して、ゆとりのある半年で設計しています。最初の90日で<span class="em">つくれる</span>を目指し、その後は案件獲得まで伴走。1日30分から進められる教材と、ライフステージに合わせた伴走で、生活に無理なく組み込めます。</div></details>
       <details class="q reveal"><summary>本当に「稼ぐ」ところまでいけますか？</summary><div class="a">学習だけで終わらせないために、後半に営業（案件獲得）のフェーズを置いています。ポートフォリオづくりから案件提案、受注後の納品・請求まで、実際の1サイクルを一緒に回します。</div></details>
       <details class="q reveal"><summary>どんなものが作れるようになりますか？</summary><div class="a">バイブコーディングでWebサイト・アプリを。さらにSNSやLP用の画像、ショート動画やPR動画まで。卒業時には、これらを集めた自分のポートフォリオサイトが公開された状態になります。</div></details>
       <details class="q reveal"><summary>女性しか参加できないのですか？</summary><div class="a">はい。SHEcraftは女性のためのスクールで、コミュニティも女性のみです。同じ立場の仲間がいるから、孤独にならず安心して続けられます。</div></details>
@@ -711,7 +714,7 @@
   <div class="wrap">
     <span class="eyebrow reveal">OUR MESSAGE</span>
     <h2 class="zen reveal">一度きりの私の人生。<br><span class="accent">「私らしく」</span>を、<br>あきらめなくていい。</h2>
-    <p class="reveal">育休、時短、在宅——働き方に正直でいるほど、選択肢は狭くなる。お金や実績がないと、夢を途中であきらめる。そんな「頑張っている人が報われない」場面を、私たちは何度も見てきました。<br><br>でも、AIは違います。特別な才能もエンジニア経験もいりません。必要なのは「私らしく生きたい」という気持ちだけ。SHEcraftは、その気持ちを“形”にする道具をあなたの手に渡し、稼ぐところまで一緒に歩きます。</p>
+    <p class="reveal">育休、時短、在宅——働き方に正直でいるほど、選択肢は狭くなる。お金や実績がないと、夢を途中であきらめる。そんな「頑張っている人が報われない」場面を、私たちは何度も見てきました。<br><br>でも、AIは違います。特別な才能もエンジニア経験もいりません。必要なのは「私らしく生きたい」という気持ちだけ。SHEcraftは、その気持ちを<span class="em">形</span>にする道具をあなたの手に渡し、稼ぐところまで一緒に歩きます。</p>
     <div class="sign reveal">SHEcraft 代表　上山 李菜（かみやま ももな）</div>
   </div>
 </section>
