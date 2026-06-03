@@ -160,52 +160,89 @@
   .vibe-demo-head{text-align:center;margin-bottom:26px;}
   .vibe-demo-head h3{font-size:23px;font-weight:800;color:var(--ink);}
   .vibe-demo-head p{font-size:14.5px;color:var(--ink-2);margin-top:8px;font-weight:500;}
-  .vdemo{max-width:720px;margin:0 auto;border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 26px 60px rgba(224,115,92,.14);}
-  .vd-bar{display:flex;align-items:center;gap:7px;padding:13px 18px;background:#FBF3EF;border-bottom:1px solid var(--line);}
+  .vdemo{max-width:780px;margin:0 auto;border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 26px 60px rgba(224,115,92,.14);}
+  .vd-bar{display:flex;align-items:center;gap:7px;padding:12px 18px;background:#FBF3EF;border-bottom:1px solid var(--line);}
   .vd-dot{width:11px;height:11px;border-radius:50%;}
   .vd-dot.r{background:#F4A99B;} .vd-dot.y{background:#FAD6A2;} .vd-dot.g{background:#93DCC9;}
   .vd-url{margin-left:12px;font-family:"Jost",sans-serif;font-size:12px;letter-spacing:.03em;color:var(--ink-3);background:#fff;border:1px solid var(--line);border-radius:100px;padding:4px 16px;}
-  .vd-stage{position:relative;height:360px;background:linear-gradient(180deg,#FFFBF9,#FFF3EE);transition:background .5s var(--ease);}
-  .vdemo[data-phase="2"] .vd-stage{background:#16211F;}
-  .vd-phase{position:absolute;inset:0;padding:30px;display:none;flex-direction:column;animation:vdFade .6s var(--ease);}
+  .vd-stage{position:relative;height:384px;background:#FFFBF9;}
+  .vd-phase{position:absolute;inset:0;display:none;animation:vdFade .5s var(--ease);}
+  .vd-phase.on{display:flex;}
   @keyframes vdFade{from{opacity:0}to{opacity:1}}
-  .vdemo[data-phase="1"] .vd-chat{display:flex;justify-content:center;gap:16px;}
-  .vdemo[data-phase="2"] .vd-code{display:flex;}
-  .vdemo[data-phase="3"] .vd-app{display:flex;}
-  /* 1) チャット */
-  .vd-bubble{max-width:80%;padding:14px 18px;border-radius:18px;font-size:15px;font-weight:600;line-height:1.6;opacity:0;animation:vdRise .5s var(--ease) forwards;}
-  .vd-bubble.user{align-self:flex-end;background:linear-gradient(95deg,var(--coral),var(--coral-d));color:#fff;border-bottom-right-radius:6px;}
-  .vd-bubble.ai{align-self:flex-start;background:#fff;border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:6px;animation-delay:.8s;}
   @keyframes vdRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-  .vd-typing{display:inline-flex;gap:3px;margin-left:7px;vertical-align:middle;}
-  .vd-typing i{width:5px;height:5px;border-radius:50%;background:var(--mint-d);animation:vdBlink 1s infinite;}
-  .vd-typing i:nth-child(2){animation-delay:.2s;} .vd-typing i:nth-child(3){animation-delay:.4s;}
-  @keyframes vdBlink{0%,100%{opacity:.25}50%{opacity:1}}
-  /* 2) コーディング */
-  .vd-codehead{font-family:"Jost",sans-serif;font-size:12px;letter-spacing:.04em;color:var(--mint-2);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
-  .vd-codehead .pulse{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:vdBlink 1s infinite;}
-  .vd-lines{display:flex;flex-direction:column;gap:11px;}
-  .vd-line{height:9px;border-radius:5px;opacity:0;animation:vdType .45s var(--ease) forwards;}
-  .vd-line.c{background:rgba(242,145,125,.85);} .vd-line.m{background:rgba(86,201,190,.85);} .vd-line.s{background:rgba(255,255,255,.16);}
-  @keyframes vdType{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
-  /* 3) 完成アプリ */
-  .vd-app{padding:22px;}
-  .vd-done{position:absolute;top:16px;right:16px;background:var(--mint-d);color:#fff;font-size:12px;font-weight:800;padding:6px 14px;border-radius:100px;box-shadow:0 8px 20px rgba(51,169,158,.3);opacity:0;animation:vdPop .5s var(--ease) 1.5s forwards;z-index:5;}
   @keyframes vdPop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
-  .vd-app-win{flex:1;width:100%;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 10px 30px rgba(224,115,92,.08);}
-  .vd-aw-top{display:flex;align-items:center;gap:8px;opacity:0;animation:vdRise .5s var(--ease) .1s forwards;}
-  .vd-aw-logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--coral),var(--mint));}
-  .vd-aw-nav{width:38px;height:8px;border-radius:4px;background:#EEE3DD;}
-  .vd-aw-nav.s{width:26px;}
-  .vd-aw-hero{flex:1;min-height:88px;border-radius:12px;background:linear-gradient(120deg,var(--coral-soft),var(--mint-soft));display:flex;align-items:center;padding:0 18px;opacity:0;animation:vdRise .5s var(--ease) .35s forwards;}
-  .vd-aw-hero span{display:block;width:46%;height:14px;border-radius:7px;background:rgba(255,255,255,.85);}
-  .vd-aw-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .vd-aw-card{height:52px;border-radius:12px;opacity:0;}
-  .vd-aw-card.m{background:var(--mint-soft);animation:vdRise .5s var(--ease) .6s forwards;}
-  .vd-aw-card.c{background:var(--coral-soft);animation:vdRise .5s var(--ease) .8s forwards;}
-  .vd-aw-btn{align-self:center;background:linear-gradient(95deg,var(--coral),var(--coral-d));color:#fff;font-size:13px;font-weight:800;padding:10px 30px;border-radius:100px;opacity:0;animation:vdPop .5s var(--ease) 1.05s forwards;box-shadow:0 8px 20px rgba(224,115,92,.3);}
-  @media(max-width:560px){.vd-stage{height:320px;} .vd-phase{padding:22px;} .vd-bubble{font-size:13.5px;} .vibe-demo-head h3{font-size:20px;}}
-  @media(prefers-reduced-motion:reduce){.vd-phase *{animation-duration:.001s!important;opacity:1!important;}}
+  @keyframes vdBlink{0%,100%{opacity:.2}50%{opacity:1}}
+
+  /* 1) チャット */
+  .vd-chat{flex-direction:column;justify-content:center;gap:16px;padding:30px 34px;background:linear-gradient(180deg,#FFFBF9,#FFF3EE);}
+  .vd-row{display:flex;align-items:flex-end;gap:11px;max-width:90%;opacity:0;animation:vdRise .55s var(--ease) forwards;}
+  .vd-row.user{flex-direction:row-reverse;align-self:flex-end;}
+  .vd-row.ai{animation-delay:1s;}
+  .vd-ava{width:36px;height:36px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .vd-ava.ai{background:#fff;border:1px solid var(--line);padding:6px;}
+  .vd-ava.ai img{width:100%;height:100%;object-fit:contain;}
+  .vd-ava.me{background:var(--coral-soft);color:var(--coral-d);font-weight:800;font-size:13px;}
+  .vd-name{font-size:10px;color:var(--ink-3);font-weight:700;margin-bottom:5px;}
+  .vd-row.user .vd-name{text-align:right;}
+  .vd-msg{padding:13px 17px;border-radius:18px;font-size:14.5px;font-weight:600;line-height:1.65;min-height:24px;}
+  .vd-row.user .vd-msg{background:linear-gradient(95deg,var(--coral),var(--coral-d));color:#fff;border-bottom-right-radius:5px;}
+  .vd-row.ai .vd-msg{background:#fff;border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:5px;}
+  .vd-typing{display:inline-flex;gap:4px;}
+  .vd-typing i{width:6px;height:6px;border-radius:50%;background:var(--mint-d);animation:vdBlink 1s infinite;}
+  .vd-typing i:nth-child(2){animation-delay:.2s;} .vd-typing i:nth-child(3){animation-delay:.4s;}
+
+  /* 2) コード生成＋ライブプレビュー */
+  .vd-build{align-items:stretch;}
+  .vd-editor{width:55%;background:#13201E;display:flex;flex-direction:column;}
+  .vd-ed-top{display:flex;align-items:center;gap:8px;padding:11px 15px;border-bottom:1px solid rgba(255,255,255,.07);font-family:"Jost",sans-serif;font-size:11px;letter-spacing:.05em;color:#84D9D0;}
+  .vd-ed-top .pulse{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:vdBlink 1s infinite;}
+  .vd-ed-body{flex:1;display:flex;overflow:hidden;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.75;}
+  .vd-gutter{width:34px;flex:0 0 auto;padding:14px 0 0;text-align:right;color:rgba(255,255,255,.22);user-select:none;}
+  .vd-gutter span{display:block;padding-right:10px;}
+  .vd-code-area{flex:1;padding:14px 14px 0 4px;color:#C7D2CE;white-space:pre;overflow:hidden;}
+  .vd-cl{display:block;opacity:0;transform:translateY(3px);}
+  .vd-cl.show{opacity:1;transform:none;transition:opacity .2s var(--ease),transform .2s var(--ease);}
+  .vd-cl .cur{display:inline-block;width:7px;height:13px;background:var(--mint);margin-left:3px;vertical-align:-2px;animation:vdBlink .7s steps(1) infinite;}
+  .tk-tag{color:#7FE0D0;} .tk-attr{color:#E7C58B;} .tk-str{color:#F6A98E;} .tk-com{color:#5E7B73;font-style:italic;} .tk-txt{color:#DCE5E1;}
+  .vd-preview{flex:1;background:linear-gradient(180deg,#FFFBF9,#FFF3EE);padding:16px 16px 18px;display:flex;flex-direction:column;}
+  .vd-pv-label{font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:10px;}
+
+  /* カフェサイト（プレビュー＆完成 共通） */
+  .cafe{flex:1;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;box-shadow:0 8px 22px rgba(224,115,92,.08);}
+  .cafe-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-bottom:1px solid var(--line);}
+  .cafe-logo{font-weight:800;font-size:12.5px;color:var(--ink);letter-spacing:.02em;}
+  .cafe-navdots{display:flex;gap:6px;} .cafe-navdots i{width:15px;height:5px;border-radius:3px;background:#EEE3DD;}
+  .cafe-hero{padding:16px 14px;background:linear-gradient(120deg,var(--coral-soft),var(--mint-soft));text-align:center;}
+  .cafe-hero h4{font-size:17px;font-weight:900;color:var(--ink);letter-spacing:.03em;}
+  .cafe-hero p{font-size:10.5px;color:var(--ink-2);margin-top:3px;}
+  .cafe-btn{display:inline-block;margin-top:11px;background:linear-gradient(95deg,var(--coral),var(--coral-d));color:#fff;font-size:11px;font-weight:800;padding:7px 20px;border-radius:100px;box-shadow:0 6px 16px rgba(224,115,92,.3);}
+  .cafe-menu{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:11px 13px;}
+  .cafe-card{border:1px solid var(--line);border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:5px;}
+  .cafe-thumb{height:34px;border-radius:7px;} .cafe-thumb.m{background:var(--mint-soft);} .cafe-thumb.c{background:var(--coral-soft);}
+  .cafe-card b{font-size:11px;color:var(--ink);font-weight:800;} .cafe-card em{font-size:10px;color:var(--coral-d);font-style:normal;font-weight:800;}
+  .cafe-el{opacity:0;transform:translateY(8px);}
+  .cafe-el.show{opacity:1;transform:none;transition:opacity .4s var(--ease),transform .4s var(--ease);}
+
+  /* 3) 完成 */
+  .vd-result{align-items:center;justify-content:center;padding:22px;background:linear-gradient(180deg,#FFFBF9,#FFF3EE);}
+  .vd-result .cafe{max-width:360px;width:100%;flex:0 0 auto;box-shadow:0 18px 44px rgba(224,115,92,.16);}
+  .vd-result.on .cafe>*{opacity:0;animation:vdRise .5s var(--ease) forwards;}
+  .vd-result.on .cafe>*:nth-child(1){animation-delay:.05s;}
+  .vd-result.on .cafe>*:nth-child(2){animation-delay:.2s;}
+  .vd-result.on .cafe>*:nth-child(3){animation-delay:.35s;}
+  .vd-done{position:absolute;top:16px;right:16px;background:var(--mint-d);color:#fff;font-size:12px;font-weight:800;padding:6px 14px;border-radius:100px;box-shadow:0 8px 20px rgba(51,169,158,.3);opacity:0;z-index:5;}
+  .vd-result.on .vd-done{animation:vdPop .5s var(--ease) .7s forwards;}
+
+  @media(max-width:640px){
+    .vd-stage{height:452px;}
+    .vd-build{flex-direction:column;}
+    .vd-editor{width:100%;height:190px;}
+    .vd-preview{flex:1;}
+    .vd-code-area{font-size:11px;}
+    .vibe-demo-head h3{font-size:20px;}
+    .vd-msg{font-size:13.5px;}
+  }
+  @media(prefers-reduced-motion:reduce){.vd-phase *{animation:none!important;opacity:1!important;transform:none!important;} .cafe-el{opacity:1!important;transform:none!important;}}
   @media(max-width:740px){.vibe-steps{grid-template-columns:1fr;gap:34px;} .vstep:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-28px;transform:translateX(-50%);}}
 
   /* about (3 pillars) */
@@ -278,6 +315,23 @@
   .cta-points{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:6px 0 30px;}
   .cta-points span{background:rgba(255,255,255,.75);border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-size:13.5px;font-weight:700;color:var(--ink-2);}
   .cta-points span::before{content:"✓ ";color:var(--coral-d);font-weight:900;}
+
+  /* before / after 事例 */
+  .cases{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;}
+  .case{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px 24px 26px;box-shadow:0 12px 34px rgba(224,115,92,.06);text-align:center;display:flex;flex-direction:column;}
+  .case-photo{width:96px;height:96px;border-radius:50%;margin:0 auto 14px;object-fit:cover;background:linear-gradient(135deg,var(--coral-soft),var(--mint-soft));box-shadow:0 10px 26px rgba(224,115,92,.12);}
+  .case-tag{display:inline-block;font-size:11px;font-weight:800;color:var(--coral-d);background:var(--coral-soft);border-radius:100px;padding:4px 12px;margin:0 auto;}
+  .case-name{font-size:16px;font-weight:800;color:var(--ink);margin:8px 0 14px;}
+  .case-ba{display:flex;flex-direction:column;gap:8px;text-align:left;margin-top:auto;}
+  .case-row{border-radius:14px;padding:13px 15px;font-size:13px;line-height:1.7;font-weight:500;}
+  .case-row .lbl{display:block;font-family:"Jost",sans-serif;font-size:10px;letter-spacing:.1em;font-weight:700;margin-bottom:4px;}
+  .case-row.before{background:#F4ECE7;color:var(--ink-2);}
+  .case-row.before .lbl{color:var(--ink-3);}
+  .case-row.after{background:linear-gradient(120deg,var(--coral-soft),var(--mint-soft));color:var(--ink);}
+  .case-row.after .lbl{color:var(--coral-d);}
+  .case-arrow{font-size:11px;font-weight:800;color:var(--coral-d);text-align:center;margin:1px 0;}
+  .cases-note{text-align:center;font-size:12px;color:var(--ink-3);margin-top:24px;}
+  @media(max-width:860px){.cases{grid-template-columns:1fr;gap:16px;max-width:460px;margin-left:auto;margin-right:auto;}}
 
   /* compare table */
   .cmp{margin-top:48px;overflow-x:auto;}
@@ -611,38 +665,51 @@
         <h3>たとえば、こんなふうに。</h3>
         <p>AIに話しかけるだけで、コードが書かれて、アプリが完成します。</p>
       </div>
-      <div class="vdemo" id="vdemo" data-phase="1" aria-hidden="true">
+      <div class="vdemo" id="vdemo" aria-hidden="true">
         <div class="vd-bar">
           <span class="vd-dot r"></span><span class="vd-dot y"></span><span class="vd-dot g"></span>
           <span class="vd-url">localhost:3000 / cafe-app</span>
         </div>
         <div class="vd-stage">
-          <!-- 1) 話しかける -->
+          <!-- 1) チャットで話しかける -->
           <div class="vd-phase vd-chat">
-            <div class="vd-bubble user">カフェの予約サイトを作って</div>
-            <div class="vd-bubble ai">いいですね、つくります<span class="vd-typing"><i></i><i></i><i></i></span></div>
+            <div class="vd-row user">
+              <div class="vd-ava me">Me</div>
+              <div><div class="vd-name">あなた</div><div class="vd-msg">カフェの予約サイトを作って</div></div>
+            </div>
+            <div class="vd-row ai">
+              <div class="vd-ava ai"><img src="images/favicon.png" alt=""></div>
+              <div><div class="vd-name">SHEcraft AI</div><div class="vd-msg" id="vdAi"><span class="vd-typing"><i></i><i></i><i></i></span></div></div>
+            </div>
           </div>
-          <!-- 2) AIがコードを書く -->
-          <div class="vd-phase vd-code">
-            <div class="vd-codehead"><span class="pulse"></span>AI がコードを書いています…</div>
-            <div class="vd-lines">
-              <div class="vd-line m" style="width:42%;animation-delay:.05s"></div>
-              <div class="vd-line s" style="width:66%;margin-left:18px;animation-delay:.2s"></div>
-              <div class="vd-line c" style="width:54%;margin-left:18px;animation-delay:.35s"></div>
-              <div class="vd-line s" style="width:72%;margin-left:36px;animation-delay:.5s"></div>
-              <div class="vd-line m" style="width:48%;margin-left:18px;animation-delay:.65s"></div>
-              <div class="vd-line c" style="width:60%;animation-delay:.8s"></div>
-              <div class="vd-line s" style="width:38%;margin-left:18px;animation-delay:.95s"></div>
+          <!-- 2) AIがコードを書く＋ライブプレビュー -->
+          <div class="vd-phase vd-build">
+            <div class="vd-editor">
+              <div class="vd-ed-top"><span class="pulse"></span>AI がコードを書いています…</div>
+              <div class="vd-ed-body"><div class="vd-gutter" id="vdGutter"></div><div class="vd-code-area" id="vdCode"></div></div>
+            </div>
+            <div class="vd-preview">
+              <div class="vd-pv-label">Live Preview</div>
+              <div class="cafe">
+                <div class="cafe-nav cafe-el" data-el="nav"><span class="cafe-logo">Cafe Lumi</span><span class="cafe-navdots"><i></i><i></i><i></i></span></div>
+                <div class="cafe-hero cafe-el" data-el="hero"><h4>Cafe Lumi</h4><p>あなたの時間に、余白を。</p><span class="cafe-btn cafe-el" data-el="btn">予約する</span></div>
+                <div class="cafe-menu">
+                  <div class="cafe-card cafe-el" data-el="c1"><span class="cafe-thumb m"></span><b>モーニング</b><em>¥980</em></div>
+                  <div class="cafe-card cafe-el" data-el="c2"><span class="cafe-thumb c"></span><b>ランチ</b><em>¥1,280</em></div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- 3) 完成 -->
-          <div class="vd-phase vd-app">
+          <div class="vd-phase vd-result">
             <div class="vd-done">✓ できた！</div>
-            <div class="vd-app-win">
-              <div class="vd-aw-top"><span class="vd-aw-logo"></span><span class="vd-aw-nav"></span><span class="vd-aw-nav s"></span></div>
-              <div class="vd-aw-hero"><span></span></div>
-              <div class="vd-aw-cards"><div class="vd-aw-card m"></div><div class="vd-aw-card c"></div></div>
-              <div class="vd-aw-btn">予約する</div>
+            <div class="cafe">
+              <div class="cafe-nav"><span class="cafe-logo">Cafe Lumi</span><span class="cafe-navdots"><i></i><i></i><i></i></span></div>
+              <div class="cafe-hero"><h4>Cafe Lumi</h4><p>あなたの時間に、余白を。</p><span class="cafe-btn">予約する</span></div>
+              <div class="cafe-menu">
+                <div class="cafe-card"><span class="cafe-thumb m"></span><b>モーニング</b><em>¥980</em></div>
+                <div class="cafe-card"><span class="cafe-thumb c"></span><b>ランチ</b><em>¥1,280</em></div>
+              </div>
             </div>
           </div>
         </div>
@@ -699,6 +766,50 @@
       </div>
     </div>
     <div class="cta-mid reveal"><a href="https://line.me/R/ti/p/@595ufzah" target="_blank" rel="noopener" class="btn">まずは無料説明会で相談する　→</a></div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER 事例 -->
+<section class="band-cream" id="cases">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow reveal">BEFORE → AFTER</span>
+      <h2 class="stitle reveal">学んで、<span class="accent">こう変わる</span>。</h2>
+      <p class="ssub reveal">AIで「つくる」を身につけた女性の、Before / After。自分ごととしてイメージしてみてください。</p>
+    </div>
+    <div class="cases">
+      <div class="case reveal">
+        <img class="case-photo" src="images/case-01.jpg" alt="育休中ママのあかりさん">
+        <span class="case-tag">育休中ママ・32歳</span>
+        <div class="case-name">あかり さん</div>
+        <div class="case-ba">
+          <div class="case-row before"><span class="lbl">BEFORE</span>在宅でできるスキルがなく、復帰後の働き方に不安があった。</div>
+          <div class="case-arrow">↓ AIで「つくる」を学んで</div>
+          <div class="case-row after"><span class="lbl">AFTER</span>AIでWebサイトを制作。育休中に、在宅で小さな受注をスタート。</div>
+        </div>
+      </div>
+      <div class="case reveal">
+        <img class="case-photo" src="images/case-02.jpg" alt="時短勤務のゆいさん">
+        <span class="case-tag">時短勤務・38歳</span>
+        <div class="case-name">ゆい さん</div>
+        <div class="case-ba">
+          <div class="case-row before"><span class="lbl">BEFORE</span>時短でキャリアが停滞。資料づくりに毎回時間がかかっていた。</div>
+          <div class="case-arrow">↓ AIで「つくる」を学んで</div>
+          <div class="case-row after"><span class="lbl">AFTER</span>資料も画像もAIで時短作成。社内で頼られ、副業の相談も来るように。</div>
+        </div>
+      </div>
+      <div class="case reveal">
+        <img class="case-photo" src="images/case-03.jpg" alt="フリーランス志望のみなさん">
+        <span class="case-tag">会社員→フリーランス志望・28歳</span>
+        <div class="case-name">みな さん</div>
+        <div class="case-ba">
+          <div class="case-row before"><span class="lbl">BEFORE</span>会社に依存する働き方が不安。手に職がほしかった。</div>
+          <div class="case-arrow">↓ AIで「つくる」を学んで</div>
+          <div class="case-row after"><span class="lbl">AFTER</span>AIクリエイターとして在宅で活動開始。自分の作品で案件を受注。</div>
+        </div>
+      </div>
+    </div>
+    <p class="cases-note reveal">※ 上記はSHEcraftが目指す姿を示す想定のモデルケースです。1期生の実例は順次掲載予定。</p>
   </div>
 </section>
 
@@ -893,14 +1004,56 @@
   });},{threshold:0.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 
-  // バイブコーディング体験アニメ（自動ループ・無音）
+  // バイブコーディング体験アニメ（チャット→コード生成＋プレビュー→完成・自動ループ・無音）
   (function(){
-    var vd=document.getElementById('vdemo');
-    if(!vd) return;
-    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ vd.setAttribute('data-phase','3'); return; }
-    var seq=[['1',2800],['2',3000],['3',3800]], i=0;
-    function tick(){ vd.setAttribute('data-phase',seq[i][0]); var d=seq[i][1]; i=(i+1)%seq.length; setTimeout(tick,d); }
-    tick();
+    var vd=document.getElementById('vdemo'); if(!vd) return;
+    var phases={chat:vd.querySelector('.vd-chat'),build:vd.querySelector('.vd-build'),result:vd.querySelector('.vd-result')};
+    var codeArea=vd.querySelector('#vdCode'), gutter=vd.querySelector('#vdGutter'), aiMsg=vd.querySelector('#vdAi');
+    var timers=[];
+    function clr(){ timers.forEach(clearTimeout); timers=[]; }
+    function T(fn,ms){ timers.push(setTimeout(fn,ms)); }
+    function show(name){ for(var k in phases){ phases[k].classList.toggle('on', k===name); } }
+    var CODE=[
+      {t:'<span class="tk-com">// Cafe Lumi — 予約サイト</span>'},
+      {t:'<span class="tk-tag">&lt;header</span> <span class="tk-attr">class</span>=<span class="tk-str">"hero"</span><span class="tk-tag">&gt;</span>', el:'nav'},
+      {t:'  <span class="tk-tag">&lt;h1&gt;</span><span class="tk-txt">Cafe Lumi</span><span class="tk-tag">&lt;/h1&gt;</span>', el:'hero'},
+      {t:'  <span class="tk-tag">&lt;p&gt;</span><span class="tk-txt">あなたの時間に、余白を。</span><span class="tk-tag">&lt;/p&gt;</span>'},
+      {t:'  <span class="tk-tag">&lt;button&gt;</span><span class="tk-txt">予約する</span><span class="tk-tag">&lt;/button&gt;</span>', el:'btn'},
+      {t:'<span class="tk-tag">&lt;/header&gt;</span>'},
+      {t:'<span class="tk-tag">&lt;section</span> <span class="tk-attr">class</span>=<span class="tk-str">"menu"</span><span class="tk-tag">&gt;</span>'},
+      {t:'  <span class="tk-tag">&lt;Card</span> <span class="tk-attr">title</span>=<span class="tk-str">"モーニング"</span> <span class="tk-attr">price</span>=<span class="tk-str">"¥980"</span> <span class="tk-tag">/&gt;</span>', el:'c1'},
+      {t:'  <span class="tk-tag">&lt;Card</span> <span class="tk-attr">title</span>=<span class="tk-str">"ランチ"</span> <span class="tk-attr">price</span>=<span class="tk-str">"¥1,280"</span> <span class="tk-tag">/&gt;</span>', el:'c2'},
+      {t:'<span class="tk-tag">&lt;/section&gt;</span>'}
+    ];
+    function reduced(){ return window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches; }
+    function reveal(elName){ var e=vd.querySelector('.vd-build [data-el="'+elName+'"]'); if(e) e.classList.add('show'); }
+    function build(){
+      show('build');
+      codeArea.innerHTML=''; gutter.innerHTML='';
+      vd.querySelectorAll('.vd-build .cafe-el').forEach(function(e){ e.classList.remove('show'); });
+      var step=330;
+      CODE.forEach(function(line,idx){
+        T(function(){
+          var cur=codeArea.querySelector('.cur'); if(cur) cur.remove();
+          var ln=document.createElement('span'); ln.className='vd-cl show'; ln.innerHTML=line.t+'<span class="cur"></span>';
+          codeArea.appendChild(ln);
+          var g=document.createElement('span'); g.textContent=idx+1; gutter.appendChild(g);
+          if(line.el) reveal(line.el);
+        }, idx*step);
+      });
+      var dur=CODE.length*step;
+      T(function(){ var c=codeArea.querySelector('.cur'); if(c) c.remove(); }, dur+200);
+      T(function(){ show('result'); T(run, 4200); }, dur+1000);
+    }
+    function run(){
+      clr();
+      if(aiMsg) aiMsg.innerHTML='<span class="vd-typing"><i></i><i></i><i></i></span>';
+      show('chat');
+      T(function(){ if(aiMsg) aiMsg.textContent='いいですね、つくります！'; }, 1500);
+      T(build, 3400);
+    }
+    if(reduced()){ show('result'); return; }
+    run();
   })();
 </script>
 </body>
