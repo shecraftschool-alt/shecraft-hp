@@ -155,17 +155,57 @@
   .vstep p{font-size:13px;color:var(--ink-2);line-height:1.8;font-weight:500;}
   .vstep:not(:last-child)::after{content:"→";position:absolute;right:-21px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--coral);font-weight:900;z-index:2;}
   .vibe-note{font-family:"Klee One","Zen Kaku Gothic New",cursive;font-size:20px;font-weight:600;color:var(--coral-d);text-align:center;margin-top:38px;line-height:1.7;}
-  /* バイブコーディング体験デモ（iframe埋め込み） */
-  .vibe-demo{margin-top:48px;}
-  .vibe-demo-head{text-align:center;margin-bottom:22px;}
-  .vibe-demo-head .vd-tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.04em;color:#fff;background:linear-gradient(95deg,var(--coral),var(--coral-d));padding:6px 16px;border-radius:100px;margin-bottom:12px;}
-  .vibe-demo-head h3{font-size:24px;font-weight:800;color:var(--ink);}
-  .vibe-demo-head p{font-size:14px;color:var(--ink-2);margin-top:8px;font-weight:500;}
-  .vibe-frame{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);box-shadow:0 22px 56px rgba(224,115,92,.14);background:#fff;}
-  .vibe-frame iframe{width:100%;height:820px;border:0;display:block;}
-  .vibe-demo-foot{text-align:center;margin-top:18px;}
-  @media(max-width:980px){.vibe-frame iframe{height:1180px;}}
-  @media(max-width:560px){.vibe-frame iframe{height:1240px;} .vibe-demo-head h3{font-size:20px;}}
+  /* バイブコーディング 体験アニメ（Apple風・自動ループ・無音） */
+  .vibe-demo{margin-top:50px;}
+  .vibe-demo-head{text-align:center;margin-bottom:26px;}
+  .vibe-demo-head h3{font-size:23px;font-weight:800;color:var(--ink);}
+  .vibe-demo-head p{font-size:14.5px;color:var(--ink-2);margin-top:8px;font-weight:500;}
+  .vdemo{max-width:720px;margin:0 auto;border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 26px 60px rgba(224,115,92,.14);}
+  .vd-bar{display:flex;align-items:center;gap:7px;padding:13px 18px;background:#FBF3EF;border-bottom:1px solid var(--line);}
+  .vd-dot{width:11px;height:11px;border-radius:50%;}
+  .vd-dot.r{background:#F4A99B;} .vd-dot.y{background:#FAD6A2;} .vd-dot.g{background:#93DCC9;}
+  .vd-url{margin-left:12px;font-family:"Jost",sans-serif;font-size:12px;letter-spacing:.03em;color:var(--ink-3);background:#fff;border:1px solid var(--line);border-radius:100px;padding:4px 16px;}
+  .vd-stage{position:relative;height:360px;background:linear-gradient(180deg,#FFFBF9,#FFF3EE);transition:background .5s var(--ease);}
+  .vdemo[data-phase="2"] .vd-stage{background:#16211F;}
+  .vd-phase{position:absolute;inset:0;padding:30px;display:none;flex-direction:column;animation:vdFade .6s var(--ease);}
+  @keyframes vdFade{from{opacity:0}to{opacity:1}}
+  .vdemo[data-phase="1"] .vd-chat{display:flex;justify-content:center;gap:16px;}
+  .vdemo[data-phase="2"] .vd-code{display:flex;}
+  .vdemo[data-phase="3"] .vd-app{display:flex;}
+  /* 1) チャット */
+  .vd-bubble{max-width:80%;padding:14px 18px;border-radius:18px;font-size:15px;font-weight:600;line-height:1.6;opacity:0;animation:vdRise .5s var(--ease) forwards;}
+  .vd-bubble.user{align-self:flex-end;background:linear-gradient(95deg,var(--coral),var(--coral-d));color:#fff;border-bottom-right-radius:6px;}
+  .vd-bubble.ai{align-self:flex-start;background:#fff;border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:6px;animation-delay:.8s;}
+  @keyframes vdRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .vd-typing{display:inline-flex;gap:3px;margin-left:7px;vertical-align:middle;}
+  .vd-typing i{width:5px;height:5px;border-radius:50%;background:var(--mint-d);animation:vdBlink 1s infinite;}
+  .vd-typing i:nth-child(2){animation-delay:.2s;} .vd-typing i:nth-child(3){animation-delay:.4s;}
+  @keyframes vdBlink{0%,100%{opacity:.25}50%{opacity:1}}
+  /* 2) コーディング */
+  .vd-codehead{font-family:"Jost",sans-serif;font-size:12px;letter-spacing:.04em;color:var(--mint-2);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+  .vd-codehead .pulse{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:vdBlink 1s infinite;}
+  .vd-lines{display:flex;flex-direction:column;gap:11px;}
+  .vd-line{height:9px;border-radius:5px;opacity:0;animation:vdType .45s var(--ease) forwards;}
+  .vd-line.c{background:rgba(242,145,125,.85);} .vd-line.m{background:rgba(86,201,190,.85);} .vd-line.s{background:rgba(255,255,255,.16);}
+  @keyframes vdType{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+  /* 3) 完成アプリ */
+  .vd-app{padding:22px;}
+  .vd-done{position:absolute;top:16px;right:16px;background:var(--mint-d);color:#fff;font-size:12px;font-weight:800;padding:6px 14px;border-radius:100px;box-shadow:0 8px 20px rgba(51,169,158,.3);opacity:0;animation:vdPop .5s var(--ease) 1.5s forwards;z-index:5;}
+  @keyframes vdPop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+  .vd-app-win{flex:1;width:100%;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 10px 30px rgba(224,115,92,.08);}
+  .vd-aw-top{display:flex;align-items:center;gap:8px;opacity:0;animation:vdRise .5s var(--ease) .1s forwards;}
+  .vd-aw-logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--coral),var(--mint));}
+  .vd-aw-nav{width:38px;height:8px;border-radius:4px;background:#EEE3DD;}
+  .vd-aw-nav.s{width:26px;}
+  .vd-aw-hero{flex:1;min-height:88px;border-radius:12px;background:linear-gradient(120deg,var(--coral-soft),var(--mint-soft));display:flex;align-items:center;padding:0 18px;opacity:0;animation:vdRise .5s var(--ease) .35s forwards;}
+  .vd-aw-hero span{display:block;width:46%;height:14px;border-radius:7px;background:rgba(255,255,255,.85);}
+  .vd-aw-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .vd-aw-card{height:52px;border-radius:12px;opacity:0;}
+  .vd-aw-card.m{background:var(--mint-soft);animation:vdRise .5s var(--ease) .6s forwards;}
+  .vd-aw-card.c{background:var(--coral-soft);animation:vdRise .5s var(--ease) .8s forwards;}
+  .vd-aw-btn{align-self:center;background:linear-gradient(95deg,var(--coral),var(--coral-d));color:#fff;font-size:13px;font-weight:800;padding:10px 30px;border-radius:100px;opacity:0;animation:vdPop .5s var(--ease) 1.05s forwards;box-shadow:0 8px 20px rgba(224,115,92,.3);}
+  @media(max-width:560px){.vd-stage{height:320px;} .vd-phase{padding:22px;} .vd-bubble{font-size:13.5px;} .vibe-demo-head h3{font-size:20px;}}
+  @media(prefers-reduced-motion:reduce){.vd-phase *{animation-duration:.001s!important;opacity:1!important;}}
   @media(max-width:740px){.vibe-steps{grid-template-columns:1fr;gap:34px;} .vstep:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-28px;transform:translateX(-50%);}}
 
   /* about (3 pillars) */
@@ -568,14 +608,45 @@
 
     <div class="vibe-demo reveal">
       <div class="vibe-demo-head">
-        <span class="vd-tag">無料体験</span>
-        <h3>実際に、やってみよう。</h3>
-        <p>アイデアを選んで「ジェネレート」を押すだけ。AIがコードを書いて、動くアプリができる体験をここで。</p>
+        <h3>たとえば、こんなふうに。</h3>
+        <p>AIに話しかけるだけで、コードが書かれて、アプリが完成します。</p>
       </div>
-      <div class="vibe-frame">
-        <iframe src="vibe-sandbox.html" title="SHEcraft バイブコーディング体験" loading="lazy"></iframe>
+      <div class="vdemo" id="vdemo" data-phase="1" aria-hidden="true">
+        <div class="vd-bar">
+          <span class="vd-dot r"></span><span class="vd-dot y"></span><span class="vd-dot g"></span>
+          <span class="vd-url">localhost:3000 / cafe-app</span>
+        </div>
+        <div class="vd-stage">
+          <!-- 1) 話しかける -->
+          <div class="vd-phase vd-chat">
+            <div class="vd-bubble user">カフェの予約サイトを作って</div>
+            <div class="vd-bubble ai">いいですね、つくります<span class="vd-typing"><i></i><i></i><i></i></span></div>
+          </div>
+          <!-- 2) AIがコードを書く -->
+          <div class="vd-phase vd-code">
+            <div class="vd-codehead"><span class="pulse"></span>AI がコードを書いています…</div>
+            <div class="vd-lines">
+              <div class="vd-line m" style="width:42%;animation-delay:.05s"></div>
+              <div class="vd-line s" style="width:66%;margin-left:18px;animation-delay:.2s"></div>
+              <div class="vd-line c" style="width:54%;margin-left:18px;animation-delay:.35s"></div>
+              <div class="vd-line s" style="width:72%;margin-left:36px;animation-delay:.5s"></div>
+              <div class="vd-line m" style="width:48%;margin-left:18px;animation-delay:.65s"></div>
+              <div class="vd-line c" style="width:60%;animation-delay:.8s"></div>
+              <div class="vd-line s" style="width:38%;margin-left:18px;animation-delay:.95s"></div>
+            </div>
+          </div>
+          <!-- 3) 完成 -->
+          <div class="vd-phase vd-app">
+            <div class="vd-done">✓ できた！</div>
+            <div class="vd-app-win">
+              <div class="vd-aw-top"><span class="vd-aw-logo"></span><span class="vd-aw-nav"></span><span class="vd-aw-nav s"></span></div>
+              <div class="vd-aw-hero"><span></span></div>
+              <div class="vd-aw-cards"><div class="vd-aw-card m"></div><div class="vd-aw-card c"></div></div>
+              <div class="vd-aw-btn">予約する</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="vibe-demo-foot"><a href="vibe-sandbox.html" target="_blank" rel="noopener" class="btn-ghost">別タブで大きく開く　→</a></div>
     </div>
   </div>
 </section>
@@ -821,6 +892,16 @@
     }
   });},{threshold:0.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  // バイブコーディング体験アニメ（自動ループ・無音）
+  (function(){
+    var vd=document.getElementById('vdemo');
+    if(!vd) return;
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ vd.setAttribute('data-phase','3'); return; }
+    var seq=[['1',2800],['2',3000],['3',3800]], i=0;
+    function tick(){ vd.setAttribute('data-phase',seq[i][0]); var d=seq[i][1]; i=(i+1)%seq.length; setTimeout(tick,d); }
+    tick();
+  })();
 </script>
 </body>
 </html>
