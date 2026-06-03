@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHEcraft - Vibe Coding Experience</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
+      background-color: #FFF6F2;
+    }
+    /* カスタムカラーのユーティリティ */
+    .bg-cream-gradient {
+      background: linear-gradient(135deg, #FFF9F6 0%, #FBE7E0 100%);
+    }
+    .text-coral { color: #F2917D; }
+    .bg-coral { background-color: #F2917D; }
+    .border-coral { border-color: #F2917D; }
+    .text-mint { color: #56C9BE; }
+    .bg-mint { background-color: #56C9BE; }
+    .border-mint { border-color: #56C9BE; }
+
+    /* スムーズなトランジション */
+    .smooth-transition {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* 完成時のキラリとするグロウエフェクト */
+    @keyframes completion-glow {
+      0% { box-shadow: 0 0 0px 0px rgba(86, 201, 190, 0); }
+      30% { box-shadow: 0 0 40px 15px rgba(86, 201, 190, 0.4); }
+      100% { box-shadow: 0 0 0px 0px rgba(86, 201, 190, 0); }
+    }
+    .glow-active {
+      animation: completion-glow 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* アプリ組み上がり時のパーツフェードイン */
+    @keyframes block-slide {
+      from { opacity: 0; transform: translateY(15px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .animate-block-1 { animation: block-slide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .animate-block-2 { animation: block-slide 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards; }
+    .animate-block-3 { animation: block-slide 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; }
+
+    /* スクロールバー非表示 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-cream-gradient min-h-screen text-slate-800 selection:bg-rose-100 flex flex-col justify-between">
+
+  <!-- ヘッダー -->
+  <header class="px-6 py-4 max-w-7xl mx-auto w-full flex items-center justify-between border-b border-[#F5DDD5]/50">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#F2917D] to-[#56C9BE] flex items-center justify-center shadow-md shadow-[#F2917D]/20">
+        <span class="text-white font-black text-sm tracking-tighter">S</span>
+      </div>
+      <div>
+        <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">SHEcraft</span>
+        <span class="text-[10px] block text-slate-400 font-medium tracking-widest -mt-1 uppercase">AI Co-Creation</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <!-- サウンド切り替え -->
+      <button id="soundToggleBtn" onclick="toggleSound()" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/75 border border-[#F5DDD5] text-xs font-semibold text-slate-600 hover:bg-white smooth-transition shadow-sm">
+        <i id="soundIcon" data-lucide="volume-2" class="w-3.5 h-3.5 text-mint"></i>
+        <span>Sound ON</span>
+      </button>
+      <span class="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#56C9BE]/10 text-[#56C9BE] text-xs font-bold">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#56C9BE] animate-ping"></span>
+        Vibe Simulator v2.0
+      </span>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-7xl mx-auto w-full px-4 md:px-6 py-6 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+    <!-- 左側：コントロール＆チャットパネル (4カラム) -->
+    <div class="lg:col-span-5 flex flex-col justify-between bg-white/50 backdrop-blur-md rounded-3xl p-6 border border-white/60 shadow-xl shadow-[#F5DDD5]/20">
+      <div>
+        <!-- タイトルエリア -->
+        <div class="mb-6">
+          <div class="inline-block px-2.5 py-1 rounded-md bg-[#F2917D]/10 text-[#F2917D] text-xs font-bold mb-2">体験版シミュレーター</div>
+          <h2 class="text-2xl md:text-3xl font-black text-slate-800 leading-tight">私らしく、AIで、<br>つくりだす。</h2>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            つくりたいアプリのアイデアを選んで「ジェネレート」を押すだけで、AIとの対話から一気にコードが紡がれ、形になる未来の開発体験（バイブコーディング）をシミュレーションできます。
+          </p>
+        </div>
+
+        <!-- プリセット選択 -->
+        <div class="mb-6">
+          <label class="block text-xs font-bold text-slate-500 mb-3 tracking-wider uppercase">1. アプリのアイデアを選ぶ</label>
+          <div class="grid grid-cols-1 gap-2.5">
+            <!-- プリセット1 -->
+            <button onclick="selectPreset('todo')" id="btn-preset-todo" class="preset-btn group w-full text-left p-3.5 rounded-2xl bg-white border-2 border-transparent hover:border-[#56C9BE]/30 hover:shadow-md smooth-transition flex items-start gap-3 shadow-sm">
+              <div class="p-2.5 rounded-xl bg-[#56C9BE]/10 text-mint smooth-transition group-hover:scale-105">
+                <i data-lucide="check-square" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-slate-800">📝 クリエイティブToDo</h4>
+                <p class="text-[11px] text-slate-500 mt-0.5">カテゴリ別の仕分けと、気持ちいいアニメーションのタスクリスト</p>
+              </div>
+            </button>
+
+            <!-- プリセット2 -->
+            <button onclick="selectPreset('budget')" id="btn-preset-budget" class="preset-btn group w-full text-left p-3.5 rounded-2xl bg-white border-2 border-transparent hover:border-[#F2917D]/30 hover:shadow-md smooth-transition flex items-start gap-3 shadow-sm">
+              <div class="p-2.5 rounded-xl bg-[#F2917D]/10 text-[#F2917D] smooth-transition group-hover:scale-105">
+                <i data-lucide="wallet" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-slate-800">🌱 シンプル家計簿</h4>
+                <p class="text-[11px] text-slate-500 mt-0.5">支出カテゴリのクイック追加と、予算管理の進捗バー</p>
+              </div>
+            </button>
+
+            <!-- プリセット3 -->
+            <button onclick="selectPreset('pomodoro')" id="btn-preset-pomodoro" class="preset-btn group w-full text-left p-3.5 rounded-2xl bg-white border-2 border-transparent hover:border-[#F2917D]/30 hover:shadow-md smooth-transition flex items-start gap-3 shadow-sm">
+              <div class="p-2.5 rounded-xl bg-orange-50 text-orange-400 smooth-transition group-hover:scale-105">
+                <i data-lucide="timer" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-slate-800">🎯 ポモドーロタイマー</h4>
+                <p class="text-[11px] text-slate-500 mt-0.5">集中と休憩を切り替える美しい円形カウントダウンタイマー</p>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- カスタムプロンプト入力 -->
+        <div class="mb-4">
+          <label class="block text-xs font-bold text-slate-500 mb-2 tracking-wider uppercase">または自由にアレンジ（プロンプト）</label>
+          <div class="relative">
+            <textarea id="promptInput" rows="2" class="w-full p-3.5 pr-10 text-xs text-slate-700 bg-white border border-[#F5DDD5] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#F2917D] focus:border-transparent resize-none smooth-transition placeholder-slate-400 shadow-sm" placeholder="例：コーラルとミントを基調にした、可愛い電卓アプリを作って！"></textarea>
+            <div class="absolute right-3.5 bottom-3.5 text-slate-300">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- アクション＆チャット風ログ -->
+      <div class="space-y-4">
+        <!-- チャットディスプレイ（非表示から状態に応じて表示） -->
+        <div id="chatConsole" class="hidden border border-white bg-[#FFFBF9]/80 rounded-2xl p-4 text-xs h-[160px] overflow-y-auto no-scrollbar space-y-3 shadow-inner">
+          <!-- メッセージが動的に挿入されます -->
+        </div>
+
+        <!-- 起動ボタン -->
+        <button id="generateBtn" onclick="startGeneration()" class="relative overflow-hidden w-full py-4 rounded-2xl bg-gradient-to-r from-[#F2917D] to-[#E57E68] text-white font-extrabold text-sm tracking-wider shadow-lg shadow-[#F2917D]/25 hover:shadow-xl hover:shadow-[#F2917D]/35 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 smooth-transition flex items-center justify-center gap-2 group">
+          <div class="absolute inset-0 w-1/2 h-full bg-white/10 skew-x-12 -translate-x-full group-hover:animate-[shimmer_1.5s_ease-out]"></div>
+          <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+          <span>AIでアプリをジェネレートする</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 右側：MacBook画面シミュレーター (7カラム) -->
+    <div class="lg:col-span-7 flex flex-col justify-center">
+      <!-- MacBookシェル -->
+      <div class="relative w-full max-w-[680px] mx-auto">
+        <!-- ディスプレイ部分 -->
+        <div class="relative bg-slate-900 rounded-3xl p-3 pb-4 shadow-2xl border border-slate-700/50">
+          <!-- 上部インカメラ/センサー -->
+          <div class="absolute top-1.5 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full bg-slate-800 border border-slate-700"></div>
+
+          <!-- スクリーン内容 -->
+          <div id="screenContainer" class="relative bg-[#FFF9F6] rounded-2xl overflow-hidden aspect-[16/10.5] w-full border border-slate-800 smooth-transition flex flex-col">
+
+            <!-- ウィンドウヘッダー -->
+            <div class="bg-white px-4 py-2.5 flex items-center justify-between border-b border-slate-100">
+              <div class="flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <div class="px-5 py-0.5 rounded bg-slate-100 text-[10px] text-slate-400 font-mono flex items-center gap-1.5 shadow-inner">
+                <i data-lucide="lock" class="w-2.5 h-2.5"></i>
+                <span>localhost:3000/shecraft-app</span>
+              </div>
+              <div class="flex items-center gap-1 opacity-40">
+                <div class="w-1.5 h-1.5 rounded-full bg-slate-500"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-slate-500"></div>
+              </div>
+            </div>
+
+            <!-- スクリーン内部コンテンツエリア -->
+            <div class="relative flex-1 flex flex-col overflow-hidden">
+
+              <!-- 状態1: Idle (初期状態) -->
+              <div id="state-idle" class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-gradient-to-b from-[#FFF9F6] to-[#FFF1EC]">
+                <div class="w-16 h-16 rounded-2xl bg-white border border-[#F5DDD5] flex items-center justify-center text-coral shadow-md mb-4 animate-bounce">
+                  <i data-lucide="laptop" class="w-8 h-8"></i>
+                </div>
+                <h3 class="font-extrabold text-base text-slate-800">SHEcraft Vibe Sandbox</h3>
+                <p class="text-xs text-slate-500 mt-2 max-w-sm leading-relaxed">
+                  左のパネルからアイデアを選び、<br>「ジェネレートする」ボタンを押すと開発がスタートします。
+                </p>
+                <div class="mt-6 flex items-center gap-4 text-[10px] font-bold text-slate-400">
+                  <span class="flex items-center gap-1"><i data-lucide="terminal" class="w-3.5 h-3.5"></i> Code Streaming</span>
+                  <span>•</span>
+                  <span class="flex items-center gap-1"><i data-lucide="zap" class="w-3.5 h-3.5"></i> Real-time Preview</span>
+                </div>
+              </div>
+
+              <!-- 状態2: Coding Stream (Canvasアニメーション) -->
+              <div id="state-coding" class="absolute inset-0 hidden bg-slate-950 flex flex-col justify-between p-4 z-10">
+                <!-- コンソール上部ヘッダー風 -->
+                <div class="flex items-center justify-between font-mono text-[10px] text-[#56C9BE]">
+                  <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#56C9BE] animate-ping"></span>VIBE ENGINE: COMPILING...</span>
+                  <span id="compilingProgressText">0%</span>
+                </div>
+
+                <!-- キャンバス -->
+                <canvas id="codeCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-90"></canvas>
+
+                <!-- コンソール下部ログ -->
+                <div class="relative z-10 w-full max-h-[100px] overflow-hidden rounded bg-slate-900/80 border border-slate-800 p-3 font-mono text-[10px] text-[#F2917D]/90 space-y-1">
+                  <div class="animate-pulse">>> Streaming AI nodes and layout trees...</div>
+                  <div class="text-slate-400">> Applying SHEcraft design tokens (#FFF6F2, #F2917D, #56C9BE)</div>
+                  <div class="text-slate-400">> Building reactive state hooks and touch gestures...</div>
+                </div>
+              </div>
+
+              <!-- 状態3: Assembling (モックパーツ組み立て) -->
+              <div id="state-assembling" class="absolute inset-0 hidden bg-[#FFF9F6] p-6 z-10 flex flex-col justify-between">
+                <div class="animate-block-1 w-full h-10 rounded-xl bg-slate-200/60 border border-slate-300/30 flex items-center px-4 justify-between">
+                  <div class="w-20 h-3 rounded bg-slate-300"></div>
+                  <div class="w-8 h-4 rounded-full bg-slate-300"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 my-auto">
+                  <div class="animate-block-2 h-24 rounded-2xl bg-slate-200/60 border border-slate-300/30 p-4 flex flex-col justify-between">
+                    <div class="w-2/3 h-3 rounded bg-slate-300"></div>
+                    <div class="w-1/3 h-5 rounded-lg bg-[#56C9BE]/30"></div>
+                  </div>
+                  <div class="animate-block-3 h-24 rounded-2xl bg-slate-200/60 border border-slate-300/30 p-4 flex flex-col justify-between">
+                    <div class="w-1/2 h-3 rounded bg-slate-300"></div>
+                    <div class="w-10 h-10 rounded-full bg-[#F2917D]/30 ml-auto"></div>
+                  </div>
+                </div>
+                <div class="animate-block-2 w-full h-12 rounded-xl bg-slate-200/60 border border-slate-300/30"></div>
+              </div>
+
+              <!-- 状態4: Ready / Real Apps (完成後の本物アプリ展開用プレースホルダー) -->
+              <div id="state-ready" class="absolute inset-0 hidden bg-[#FFFBF9] flex flex-col p-4 overflow-y-auto no-scrollbar z-20 transition-all duration-300">
+                <!-- 完成時に一時的に輝かせる光のエフェクト用 -->
+                <div id="glowOverlay" class="absolute inset-0 pointer-events-none z-50"></div>
+
+                <!-- ここに動的にアプリが挿入される -->
+                <div id="activeAppWrapper" class="w-full h-full flex flex-col"></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- キーボード・スタンド接続部分の影表現（より立体的に） -->
+        <div class="relative -mt-1 mx-auto w-[94%] h-3.5 bg-slate-800 rounded-b-xl border-t border-slate-700 shadow-xl"></div>
+        <div class="mx-auto w-[30%] h-1 bg-slate-900 rounded-b-md shadow-md"></div>
+      </div>
+
+      <!-- テロップ・メッセージ -->
+      <div class="text-center mt-5 text-xs text-slate-400 font-semibold flex items-center justify-center gap-2">
+        <i data-lucide="info" class="w-3.5 h-3.5 text-mint"></i>
+        <span>アプリ完成後は、実際に画面を触ってクリックして動かすことができます！</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- LPコンバージョン・説明フッター -->
+  <footer class="bg-white py-6 border-t border-[#F5DDD5] mt-8">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <h4 class="font-extrabold text-sm text-slate-800">＼ あなたの思い描いたアプリが、一瞬で形になる日々を。 ／</h4>
+        <p class="text-xs text-slate-500 mt-1">SHEcraft（シークラフト）では、AIを相棒にノンコード・バイブコーディングで誰でもオリジナルアプリを創れます。</p>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-3">
+        <a href="https://line.me/R/ti/p/@595ufzah" target="_blank" rel="noopener" class="px-6 py-3 rounded-2xl bg-[#06C755] hover:bg-[#05b34c] text-white text-xs font-black tracking-wider shadow-md shadow-[#06C755]/20 flex items-center gap-2 smooth-transition transform hover:-translate-y-0.5">
+          <i data-lucide="message-circle" class="w-4 h-4 fill-current"></i>
+          <span>公式LINEで無料説明会に申し込む</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== JSスクリプト ======================== -->
+  <script>
+    // --- 状態管理 ---
+    let selectedAppId = 'todo'; // デフォルト
+    let isGenerating = false;
+    let isSoundEnabled = true;
+    let audioCtx = null;
+    let codeAnimationId = null;
+
+    // --- DOM要素 ---
+    const promptInput = document.getElementById('promptInput');
+    const generateBtn = document.getElementById('generateBtn');
+    const chatConsole = document.getElementById('chatConsole');
+    const activeAppWrapper = document.getElementById('activeAppWrapper');
+
+    // --- 状態画面コンテナ ---
+    const stateIdle = document.getElementById('state-idle');
+    const stateCoding = document.getElementById('state-coding');
+    const stateAssembling = document.getElementById('state-assembling');
+    const stateReady = document.getElementById('state-ready');
+    const glowOverlay = document.getElementById('glowOverlay');
+
+    // プリセット文言
+    const prompts = {
+      todo: "コーラルとミントを基調にした、可愛いToDo管理アプリ。仕事・生活・アイデアでタブ切り替えができて、チェックを入れると心地よく消えるタスクリストを作って！",
+      budget: "シンプルで洗練されたデザインの家計簿。食費、娯楽、光熱費を1クリックでさっと追加できて、月の目標予算（50,000円）に対する残り進捗バーが見えるもの。",
+      pomodoro: "集中時間を高めるミニマルなポモドーロタイマー。25分と5分の切り替え、円形の美しいプログレスサークル、スタート/ストップのアニメーション付き。"
+    };
+
+    // 初期化
+    window.onload = function() {
+      lucide.createIcons();
+      selectPreset('todo'); // 初期選択
+    };
+
+    // --- 音響エンジン (Web Audio API) ---
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playSound(type) {
+      if (!isSoundEnabled) return;
+      initAudio();
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      const now = audioCtx.currentTime;
+
+      if (type === 'click') {
+        // キーボードを叩くようなコトコト音
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(150, now);
+        osc.frequency.exponentialRampToValueAtTime(40, now + 0.05);
+
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+
+        osc.start(now);
+        osc.stop(now + 0.06);
+      }
+      else if (type === 'whoosh') {
+        // コーディングストリーム中の風が吹き荒れるような音 (簡易ホワイトノイズスイープ)
+        const bufferSize = audioCtx.sampleRate * 1.5; // 1.5s
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(100, now);
+        filter.frequency.exponentialRampToValueAtTime(2500, now + 1.2);
+        filter.Q.value = 4.0;
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(0.18, now + 0.3);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        noise.start(now);
+        noise.stop(now + 1.5);
+      }
+      else if (type === 'chime') {
+        // 完成時の美しいクリスタルアルペジオ
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6 (ドミソド)
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+
+          gain.gain.setValueAtTime(0, now + idx * 0.12);
+          gain.gain.linearRampToValueAtTime(0.15, now + idx * 0.12 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.8);
+
+          osc.start(now + idx * 0.12);
+          osc.stop(now + idx * 0.12 + 0.9);
+        });
+      }
+    }
+
+    function toggleSound() {
+      isSoundEnabled = !isSoundEnabled;
+      const soundIcon = document.getElementById('soundIcon');
+      const btnText = document.querySelector('#soundToggleBtn span');
+      if (isSoundEnabled) {
+        soundIcon.setAttribute('data-lucide', 'volume-2');
+        soundIcon.classList.add('text-mint');
+        soundIcon.classList.remove('text-slate-400');
+        btnText.innerText = "Sound ON";
+        initAudio();
+        playSound('click');
+      } else {
+        soundIcon.setAttribute('data-lucide', 'volume-x');
+        soundIcon.classList.add('text-slate-400');
+        soundIcon.classList.remove('text-mint');
+        btnText.innerText = "Sound OFF";
+      }
+      lucide.createIcons();
+    }
+
+    // --- プリセット切り替え ---
+    function selectPreset(id) {
+      if (isGenerating) return;
+      selectedAppId = id;
+
+      // ボタンデザインのアクティブ化
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.classList.remove('border-[#56C9BE]', 'border-[#F2917D]', 'bg-white', 'shadow-md');
+        btn.classList.add('border-transparent', 'bg-white/50');
+      });
+
+      const activeBtn = document.getElementById(`btn-preset-${id}`);
+      const color = (id === 'todo') ? '#56C9BE' : '#F2917D';
+      activeBtn.classList.remove('border-transparent', 'bg-white/50');
+      activeBtn.classList.add(`border-[${color}]`, 'bg-white', 'shadow-md');
+
+      // プロンプトをテキストエリアに反映
+      promptInput.value = prompts[id];
+      playSound('click');
+    }
+
+    // --- 生成シーケンス ---
+    function startGeneration() {
+      if (isGenerating) return;
+      isGenerating = true;
+      generateBtn.disabled = true;
+      generateBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      generateBtn.innerHTML = `<span class="animate-spin mr-2">⏳</span>AI開発エンジン起動中...`;
+
+      // 1. チャットコンソールを開く
+      chatConsole.classList.remove('hidden');
+      chatConsole.innerHTML = "";
+
+      // チャットやり取り
+      addChatMessage('user', promptInput.value);
+      playSound('click');
+
+      setTimeout(() => {
+        addChatMessage('ai', `了解しました！デザインテーマを<b>コーラル（#F2917D）</b>と<b>ミント（#56C9BE）</b>に設定し、レスポンシブなインターフェースを構築します。データベースとフック処理を準備して、ビルドを開始します。`);
+        playSound('click');
+      }, 1200);
+
+      // 2. 3.2秒後にコンソールを完了し、コーディングCanvas状態に切り替える（カット3）
+      setTimeout(() => {
+        transitionToCoding();
+      }, 3400);
+    }
+
+    function addChatMessage(sender, text) {
+      const bubble = document.createElement('div');
+      bubble.className = "flex flex-col gap-1 animate-[block-slide_0.4s_ease-out]";
+      if (sender === 'user') {
+        bubble.innerHTML = `
+          <div class="self-end max-w-[85%] bg-[#F2917D] text-white px-3 py-2 rounded-2xl rounded-tr-sm text-xs font-medium shadow-sm">
+            ${text}
+          </div>
+          <span class="text-[9px] text-slate-400 self-end mr-1">あなた</span>
+        `;
+      } else {
+        bubble.innerHTML = `
+          <div class="self-start max-w-[85%] bg-white border border-[#F5DDD5] text-slate-700 px-3 py-2 rounded-2xl rounded-tl-sm text-xs leading-relaxed shadow-sm">
+            ${text}
+          </div>
+          <span class="text-[9px] text-slate-400 ml-1">SHEcraft AI</span>
+        `;
+      }
+      chatConsole.appendChild(bubble);
+      chatConsole.scrollTop = chatConsole.scrollHeight;
+    }
+
+    // --- 状態遷移2: コーディングストリーム (Canvas) ---
+    function transitionToCoding() {
+      stateIdle.classList.add('hidden');
+      stateCoding.classList.remove('hidden');
+
+      // 音響効果: ウーシュ
+      playSound('whoosh');
+
+      // Canvas起動
+      startCodeStreamAnimation();
+
+      // プログレスバー風アニメーション
+      let progress = 0;
+      const progressText = document.getElementById('compilingProgressText');
+      const progressInterval = setInterval(() => {
+        progress += Math.floor(Math.random() * 8) + 4;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(progressInterval);
+          // 組み立て状態に移行 (カット4)
+          setTimeout(() => {
+            transitionToAssembling();
+          }, 300);
+        }
+        progressText.innerText = `${progress}%`;
+      }, 100);
+    }
+
+    // --- HTML5 Canvas コードストリーム（カット3の再現） ---
+    function startCodeStreamAnimation() {
+      const canvas = document.getElementById('codeCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // リサイズ対応
+      const resizeCanvas = () => {
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+      };
+      resizeCanvas();
+
+      const particles = [];
+      const particleCount = 60;
+      const lines = [];
+      const lineCount = 15;
+
+      // 粒子オブジェクト生成
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 3 + 1,
+          speedY: -(Math.random() * 2 + 1), // 上に流れる
+          color: Math.random() > 0.5 ? 'rgba(242, 145, 125, 0.7)' : 'rgba(86, 201, 190, 0.7)', // コーラル or ミント
+          blur: Math.random() * 4 + 1
+        });
+      }
+
+      // 横断するコードライン
+      const codeSnippets = [
+        "const [data, setData] = useState(initialState);",
+        "const handleAdd = (item) => { ... }",
+        "theme: { colors: { coral: '#F2917D', mint: '#56C9BE' } }",
+        "db.collection('apps').add(document);",
+        "flex flex-col items-center justify-between",
+        "<div className='p-4 rounded-3xl bg-white shadow-xl'>",
+        "effect: { duration: 600, easing: 'cubic-bezier' }",
+        "onSnapshot(query, (snapshot) => {",
+        "signInAnonymously(auth).then(() => { ... })"
+      ];
+
+      for (let i = 0; i < lineCount; i++) {
+        lines.push({
+          x: Math.random() * (canvas.width * 0.5),
+          y: Math.random() * canvas.height,
+          speedX: Math.random() * 1.5 + 0.8,
+          text: codeSnippets[Math.floor(Math.random() * codeSnippets.length)],
+          color: Math.random() > 0.5 ? '#F2917D' : '#56C9BE',
+          size: Math.floor(Math.random() * 2) + 9 // font size
+        });
+      }
+
+      function animate() {
+        ctx.fillStyle = 'rgba(10, 15, 30, 0.2)'; // トレイル（残像）を残す
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // 粒子描画
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = p.blur;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+
+          // アップデート
+          p.y += p.speedY;
+          if (p.y < 0) {
+            p.y = canvas.height;
+            p.x = Math.random() * canvas.width;
+          }
+        });
+
+        // コードテキストストリーム描画
+        ctx.shadowBlur = 0; // テキストはボケを少なく
+        lines.forEach(l => {
+          ctx.fillStyle = l.color;
+          ctx.font = `${l.size}px monospace`;
+          ctx.fillText(l.text, l.x, l.y);
+
+          l.x += l.speedX;
+          if (l.x > canvas.width) {
+            l.x = -200;
+            l.y = Math.random() * canvas.height;
+          }
+        });
+
+        codeAnimationId = requestAnimationFrame(animate);
+      }
+
+      animate();
+    }
+
+    // --- 状態遷移3: Assembling (組み立て) ---
+    function transitionToAssembling() {
+      // キャンバスアニメーションの破棄
+      if (codeAnimationId) {
+        cancelAnimationFrame(codeAnimationId);
+      }
+      stateCoding.classList.add('hidden');
+      stateAssembling.classList.remove('hidden');
+
+      // 組み立ては1.2秒だけ
+      setTimeout(() => {
+        transitionToReady();
+      }, 1400);
+    }
+
+    // --- 状態遷移4: Ready (完成アプリ展開) ---
+    function transitionToReady() {
+      stateAssembling.classList.add('hidden');
+      stateReady.classList.remove('hidden');
+
+      // サウンド効果: 完成
+      playSound('chime');
+
+      // グロウオーレイをアニメーション
+      glowOverlay.className = "absolute inset-0 pointer-events-none z-50 bg-[#56C9BE]/20 glow-active";
+      setTimeout(() => {
+        glowOverlay.className = "absolute inset-0 pointer-events-none z-50";
+      }, 1500);
+
+      // アプリ展開
+      renderActiveApp();
+
+      // UIコントロールボタンの復帰
+      isGenerating = false;
+      generateBtn.disabled = false;
+      generateBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      generateBtn.innerHTML = `<i data-lucide="zap" class="w-4 h-4 fill-current"></i><span>もう一度ジェネレートする</span>`;
+      lucide.createIcons();
+    }
+
+    // --- アプリレンダリングエンジン ---
+    function renderActiveApp() {
+      activeAppWrapper.innerHTML = "";
+
+      if (selectedAppId === 'todo') {
+        renderTodoApp();
+      } else if (selectedAppId === 'budget') {
+        renderBudgetApp();
+      } else if (selectedAppId === 'pomodoro') {
+        renderPomodoroApp();
+      }
+
+      lucide.createIcons();
+    }
+
+    // ==========================================
+    // 🌱 アプリ1: シンプル家計簿
+    // ==========================================
+    let budgetItems = [
+      { id: 1, name: 'カフェおやつ', amount: 850, category: 'food' },
+      { id: 2, name: 'デザイン本', amount: 2800, category: 'study' },
+      { id: 3, name: 'コワーキング', amount: 1500, category: 'work' }
+    ];
+    const budgetLimit = 15000;
+
+    function renderBudgetApp() {
+      const getSum = () => budgetItems.reduce((acc, cur) => acc + cur.amount, 0);
+      const sum = getSum();
+      const progressPercent = Math.min((sum / budgetLimit) * 100, 100);
+
+      activeAppWrapper.innerHTML = `
+        <div class="flex-1 flex flex-col justify-between text-slate-800 h-full">
+          <!-- 家計簿ヘッダー -->
+          <div class="flex items-center justify-between pb-3 border-b border-[#F5DDD5]/50">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-[#F2917D]/10 text-[#F2917D] flex items-center justify-center">
+                <i data-lucide="wallet" class="w-4 h-4"></i>
+              </div>
+              <h3 class="font-extrabold text-xs tracking-tight">🌱 ハルカの家計簿</h3>
+            </div>
+            <span class="text-[10px] text-slate-400 font-bold">今月の予算目標: ¥15,000</span>
+          </div>
+
+          <!-- 予算達成状況カード -->
+          <div class="my-3 bg-white border border-[#F5DDD5] p-3 rounded-xl shadow-sm">
+            <div class="flex items-baseline justify-between">
+              <span class="text-[10px] text-slate-400 font-semibold">現在の合計支出</span>
+              <div>
+                <span class="text-lg font-black text-slate-800">¥${sum.toLocaleString()}</span>
+                <span class="text-[9px] text-slate-400 font-medium"> / ¥${budgetLimit.toLocaleString()}</span>
+              </div>
+            </div>
+
+            <!-- プログレスバー -->
+            <div class="w-full h-2 bg-slate-100 rounded-full mt-2.5 overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#F2917D] to-[#E57E68] rounded-full transition-all duration-500" style="width: ${progressPercent}%"></div>
+            </div>
+
+            <div class="flex items-center justify-between text-[8px] text-slate-400 mt-1.5 font-bold">
+              <span>使用済: ${progressPercent.toFixed(0)}%</span>
+              <span class="${sum > budgetLimit ? 'text-rose-500' : 'text-mint'}">${sum > budgetLimit ? '予算オーバー！' : '余裕があります 👍'}</span>
+            </div>
+          </div>
+
+          <!-- 支出リスト (高さ固定・スクロール) -->
+          <div class="flex-1 overflow-y-auto no-scrollbar space-y-2 max-h-[110px] pr-1">
+            ${budgetItems.map(item => `
+              <div class="flex items-center justify-between bg-white/70 p-2.5 rounded-lg border border-slate-100 text-[10px] shadow-sm">
+                <div class="flex items-center gap-2">
+                  <span class="px-1.5 py-0.5 rounded text-[8px] font-bold ${
+                    item.category === 'food' ? 'bg-orange-50 text-orange-400' :
+                    item.category === 'study' ? 'bg-[#56C9BE]/10 text-mint' : 'bg-rose-50 text-[#F2917D]'
+                  }">${
+                    item.category === 'food' ? '食費' :
+                    item.category === 'study' ? '自己投資' : '仕事'
+                  }</span>
+                  <span class="font-bold text-slate-700">${item.name}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="font-bold">¥${item.amount.toLocaleString()}</span>
+                  <button onclick="deleteBudgetItem(${item.id})" class="text-slate-300 hover:text-rose-400 smooth-transition">
+                    <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- クイック支出追加フォーム -->
+          <div class="pt-3 border-t border-slate-100 flex gap-1.5 items-center">
+            <input type="text" id="budgetNameInput" placeholder="品名" class="flex-1 px-2 py-1.5 text-[10px] bg-white border border-[#F5DDD5] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#F2917D]" />
+            <input type="number" id="budgetAmountInput" placeholder="金額" class="w-16 px-2 py-1.5 text-[10px] bg-white border border-[#F5DDD5] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#F2917D]" />
+            <select id="budgetCategorySelect" class="px-1.5 py-1.5 text-[10px] bg-white border border-[#F5DDD5] rounded-lg text-slate-500">
+              <option value="food">食費</option>
+              <option value="study">自己投資</option>
+              <option value="work">仕事</option>
+            </select>
+            <button onclick="addBudgetItem()" class="px-3 py-1.5 bg-slate-800 text-white rounded-lg text-[10px] font-bold hover:bg-slate-700 active:scale-95 smooth-transition flex items-center gap-1">
+              <i data-lucide="plus" class="w-3 h-3"></i>
+              追加
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    window.addBudgetItem = function() {
+      const nameInput = document.getElementById('budgetNameInput');
+      const amountInput = document.getElementById('budgetAmountInput');
+      const categorySelect = document.getElementById('budgetCategorySelect');
+
+      if (!nameInput.value || !amountInput.value) return;
+
+      budgetItems.push({
+        id: Date.now(),
+        name: nameInput.value,
+        amount: parseInt(amountInput.value, 10),
+        category: categorySelect.value
+      });
+
+      playSound('click');
+      renderBudgetApp();
+    };
+
+    window.deleteBudgetItem = function(id) {
+      budgetItems = budgetItems.filter(item => item.id !== id);
+      playSound('click');
+      renderBudgetApp();
+    };
+
+
+    // ==========================================
+    // 🎯 アプリ2: ポモドーロタイマー
+    // ==========================================
+    let timerDuration = 1500; // 25分 (1500秒)
+    let initialDuration = 1500;
+    let timerId = null;
+    let isTimerRunning = false;
+
+    function renderPomodoroApp() {
+      const minutes = Math.floor(timerDuration / 60);
+      const seconds = timerDuration % 60;
+      const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+      const percent = (timerDuration / initialDuration) * 100;
+      // 円形プログレス用計算 (2 * PI * R) (R=36) => 周長 約226
+      const offset = 226 - (percent / 100) * 226;
+
+      activeAppWrapper.innerHTML = `
+        <div class="flex-1 flex flex-col justify-between text-slate-800 h-full items-center">
+          <!-- タイマーヘッダー -->
+          <div class="w-full flex items-center justify-between pb-2 border-b border-[#F5DDD5]/50">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-orange-50 text-orange-400 flex items-center justify-center">
+                <i data-lucide="timer" class="w-4 h-4"></i>
+              </div>
+              <h3 class="font-extrabold text-xs tracking-tight">🎯 集中タイマー</h3>
+            </div>
+            <!-- モード切り替え -->
+            <div class="flex gap-1 bg-slate-100 p-0.5 rounded-lg text-[9px] font-bold">
+              <button onclick="setTimerMode('work')" class="px-2 py-0.5 rounded-md ${initialDuration === 1500 ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-400'}">25分</button>
+              <button onclick="setTimerMode('break')" class="px-2 py-0.5 rounded-md ${initialDuration === 300 ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-400'}">5分</button>
+            </div>
+          </div>
+
+          <!-- タイマーサークル -->
+          <div class="relative w-28 h-28 my-auto flex items-center justify-center">
+            <!-- 背景円 -->
+            <svg class="absolute transform -rotate-90 w-full h-full" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="36" stroke="#f1f5f9" stroke-width="4.5" fill="transparent" />
+              <!-- 進捗円 -->
+              <circle cx="40" cy="40" r="36" stroke="#F2917D" stroke-width="5" fill="transparent"
+                stroke-dasharray="226"
+                stroke-dashoffset="${offset}"
+                class="transition-all duration-300"
+                stroke-linecap="round" />
+            </svg>
+            <div class="text-center z-10">
+              <div class="text-2xl font-black text-slate-800 tracking-tight font-mono">${formattedTime}</div>
+              <div class="text-[8px] text-slate-400 font-bold uppercase tracking-wider">${initialDuration === 1500 ? 'Focus' : 'Break'}</div>
+            </div>
+          </div>
+
+          <!-- 操作コントロール -->
+          <div class="flex items-center gap-3 w-full justify-center">
+            <button onclick="toggleTimer()" class="px-6 py-2 rounded-xl text-xs font-extrabold text-white transition-all duration-300 ${isTimerRunning ? 'bg-slate-800 hover:bg-slate-700' : 'bg-[#F2917D] hover:bg-[#E57E68]'} shadow-sm flex items-center gap-1.5">
+              <i data-lucide="${isTimerRunning ? 'pause' : 'play'}" class="w-3.5 h-3.5 fill-current"></i>
+              <span>${isTimerRunning ? '一時停止' : 'スタート'}</span>
+            </button>
+            <button onclick="resetTimer()" class="p-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl transition-all">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    window.setTimerMode = function(mode) {
+      clearInterval(timerId);
+      isTimerRunning = false;
+      if (mode === 'work') {
+        initialDuration = 1500;
+        timerDuration = 1500;
+      } else {
+        initialDuration = 300;
+        timerDuration = 300;
+      }
+      playSound('click');
+      renderPomodoroApp();
+    };
+
+    window.toggleTimer = function() {
+      playSound('click');
+      if (isTimerRunning) {
+        clearInterval(timerId);
+        isTimerRunning = false;
+        renderPomodoroApp();
+      } else {
+        isTimerRunning = true;
+        renderPomodoroApp();
+        timerId = setInterval(() => {
+          if (timerDuration > 0) {
+            timerDuration--;
+            renderPomodoroApp();
+          } else {
+            clearInterval(timerId);
+            isTimerRunning = false;
+            playSound('chime');
+            renderPomodoroApp();
+          }
+        }, 1000);
+      }
+    };
+
+    window.resetTimer = function() {
+      clearInterval(timerId);
+      isTimerRunning = false;
+      timerDuration = initialDuration;
+      playSound('click');
+      renderPomodoroApp();
+    };
+
+
+    // ==========================================
+    // 📝 アプリ3: クリエイティブToDo
+    // ==========================================
+    let todoItems = [
+      { id: 1, text: '朝のルーティン（瞑想・ヨガ）', category: 'life', completed: true },
+      { id: 2, name: 'SHEcraft LPのワイヤーフレーム作成', text: 'LPのワイヤーフレームを作成する', category: 'work', completed: false },
+      { id: 3, text: '週末の旅行計画を練る', category: 'idea', completed: false }
+    ];
+    let activeTodoTab = 'all';
+
+    function renderTodoApp() {
+      const filteredTodos = todoItems.filter(item => {
+        if (activeTodoTab === 'all') return true;
+        return item.category === activeTodoTab;
+      });
+
+      activeAppWrapper.innerHTML = `
+        <div class="flex-1 flex flex-col justify-between text-slate-800 h-full">
+          <!-- ToDoヘッダー -->
+          <div class="flex items-center justify-between pb-2.5 border-b border-[#F5DDD5]/50">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-[#56C9BE]/10 text-mint flex items-center justify-center">
+                <i data-lucide="check-square" class="w-4 h-4"></i>
+              </div>
+              <h3 class="font-extrabold text-xs tracking-tight">📝 私のきょうのタスク</h3>
+            </div>
+            <!-- カテゴリタブ -->
+            <div class="flex gap-1 bg-slate-100 p-0.5 rounded-lg text-[8px] font-bold">
+              <button onclick="setTodoTab('all')" class="px-1.5 py-0.5 rounded-md ${activeTodoTab === 'all' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-400'}">すべて</button>
+              <button onclick="setTodoTab('work')" class="px-1.5 py-0.5 rounded-md ${activeTodoTab === 'work' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-400'}">仕事</button>
+              <button onclick="setTodoTab('life')" class="px-1.5 py-0.5 rounded-md ${activeTodoTab === 'life' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-400'}">日常</button>
+            </div>
+          </div>
+
+          <!-- タスクリスト (スクロール) -->
+          <div class="flex-1 overflow-y-auto no-scrollbar space-y-1.5 py-2.5 max-h-[120px]">
+            ${filteredTodos.map(todo => `
+              <div class="flex items-center justify-between bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm transition-all duration-300 ${todo.completed ? 'opacity-55' : ''}">
+                <div class="flex items-center gap-2.5 flex-1 min-w-0">
+                  <!-- カスタムチェックボックス -->
+                  <button onclick="toggleTodoCompleted(${todo.id})" class="w-4 h-4 rounded border-2 flex items-center justify-center transition-all ${
+                    todo.completed ? 'bg-mint border-mint text-white' : 'border-slate-300 hover:border-mint'
+                  }">
+                    ${todo.completed ? '<i data-lucide="check" class="w-3 h-3"></i>' : ''}
+                  </button>
+                  <span class="text-[10px] font-medium text-slate-700 truncate ${todo.completed ? 'line-through text-slate-400' : ''}">
+                    ${todo.text || todo.name}
+                  </span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="px-1.5 py-0.5 rounded-[5px] text-[7px] font-extrabold uppercase ${
+                    todo.category === 'work' ? 'bg-[#56C9BE]/10 text-mint' :
+                    todo.category === 'life' ? 'bg-orange-50 text-orange-400' : 'bg-pink-50 text-pink-500'
+                  }">
+                    ${todo.category === 'work' ? 'Work' : todo.category === 'life' ? 'Life' : 'Idea'}
+                  </span>
+                  <button onclick="deleteTodo(${todo.id})" class="text-slate-300 hover:text-rose-400 smooth-transition p-1">
+                    <i data-lucide="trash-2" class="w-3 h-3"></i>
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- インプット＆追加 -->
+          <div class="pt-2 border-t border-slate-100 flex gap-1.5 items-center">
+            <input type="text" id="todoTextInput" placeholder="あたらしいタスクを追加..." class="flex-1 px-3 py-1.5 text-[10px] bg-white border border-[#F5DDD5] rounded-xl focus:outline-none focus:ring-1 focus:ring-mint" />
+            <select id="todoCategorySelect" class="px-1 py-1.5 text-[10px] bg-white border border-[#F5DDD5] rounded-xl text-slate-500">
+              <option value="work">仕事</option>
+              <option value="life">日常</option>
+              <option value="idea">アイデア</option>
+            </select>
+            <button onclick="addTodo()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-[10px] font-bold active:scale-95 smooth-transition">
+              追加
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    window.setTodoTab = function(tab) {
+      activeTodoTab = tab;
+      playSound('click');
+      renderTodoApp();
+    };
+
+    window.toggleTodoCompleted = function(id) {
+      const todo = todoItems.find(t => t.id === id);
+      if (todo) {
+        todo.completed = !todo.completed;
+        playSound('click');
+        renderTodoApp();
+      }
+    };
+
+    window.addTodo = function() {
+      const textInput = document.getElementById('todoTextInput');
+      const categorySelect = document.getElementById('todoCategorySelect');
+
+      if (!textInput.value.trim()) return;
+
+      todoItems.push({
+        id: Date.now(),
+        text: textInput.value,
+        category: categorySelect.value,
+        completed: false
+      });
+
+      textInput.value = "";
+      playSound('click');
+      renderTodoApp();
+    };
+
+    window.deleteTodo = function(id) {
+      todoItems = todoItems.filter(t => t.id !== id);
+      playSound('click');
+      renderTodoApp();
+    };
+
+  </script>
+</body>
+</html>

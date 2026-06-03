@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SHEcraft（シークラフト）｜女性のための、AIクリエイタースクール</title>
 <meta name="description" content="私らしく、AIで、つくる。AIを未経験から学び、自分のサービス・作品を持つ。女性のためのAIクリエイタースクール SHEcraft。バイブコーディングを主軸に、AI画像・AI動画も。育休・時短・在宅でも、案件獲得まで伴走します。">
-<link rel="icon" type="image/png" href="images/shecraft-mark.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
 <meta property="og:title" content="SHEcraft（シークラフト）｜女性のための、AIクリエイタースクール">
 <meta property="og:description" content="私らしく、AIで、つくる。未経験から90日で“つくる人”へ。半年でじっくり、案件獲得まで伴走する女性のためのAIクリエイタースクール。">
 <meta property="og:image" content="images/shecraft-logo.png">
@@ -47,6 +47,13 @@
   .ph::after{content:"📷 写真";position:absolute;bottom:10px;right:12px;font-size:11px;font-weight:700;color:var(--coral-d);background:rgba(255,255,255,.7);padding:3px 9px;border-radius:100px;}
   .ph .ph-ic{font-size:46px;opacity:.5;}
   img.ph{width:100%;object-fit:cover;display:block;}
+  /* イラストアイコン（絵文字置き換え） */
+  .pillar .ic img,.scard .ic img,.vstep .vic img{width:100%;height:100%;object-fit:contain;display:block;}
+  .scard .ic{width:64px;height:64px;margin:0 auto 4px;}
+  .vstep .vic{width:68px;height:68px;margin:0 auto;}
+  .dline .who{overflow:hidden;}
+  .dline .who img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;}
+  .fitcard h4 img{width:24px;height:24px;object-fit:contain;vertical-align:-5px;}
 
   /* buttons */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(95deg,var(--coral),var(--coral-d));color:#fff;font-weight:800;font-size:16px;padding:17px 36px;border-radius:100px;box-shadow:0 10px 30px rgba(224,115,92,.28);transition:transform .2s var(--ease),box-shadow .2s var(--ease);}
@@ -145,15 +152,23 @@
   .vstep p{font-size:13px;color:var(--ink-2);line-height:1.8;font-weight:500;}
   .vstep:not(:last-child)::after{content:"→";position:absolute;right:-21px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--coral);font-weight:900;z-index:2;}
   .vibe-note{font-family:"Klee One","Zen Kaku Gothic New",cursive;font-size:20px;font-weight:600;color:var(--coral-d);text-align:center;margin-top:38px;line-height:1.7;}
+  /* バイブコーディング体験デモ（iframe埋め込み） */
+  .vibe-demo{margin-top:48px;}
+  .vibe-demo-head{text-align:center;margin-bottom:22px;}
+  .vibe-demo-head .vd-tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.04em;color:#fff;background:linear-gradient(95deg,var(--coral),var(--coral-d));padding:6px 16px;border-radius:100px;margin-bottom:12px;}
+  .vibe-demo-head h3{font-size:24px;font-weight:800;color:var(--ink);}
+  .vibe-demo-head p{font-size:14px;color:var(--ink-2);margin-top:8px;font-weight:500;}
+  .vibe-frame{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);box-shadow:0 22px 56px rgba(224,115,92,.14);background:#fff;}
+  .vibe-frame iframe{width:100%;height:820px;border:0;display:block;}
+  .vibe-demo-foot{text-align:center;margin-top:18px;}
+  @media(max-width:980px){.vibe-frame iframe{height:1180px;}}
+  @media(max-width:560px){.vibe-frame iframe{height:1240px;} .vibe-demo-head h3{font-size:20px;}}
   @media(max-width:740px){.vibe-steps{grid-template-columns:1fr;gap:34px;} .vstep:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-28px;transform:translateX(-50%);}}
 
   /* about (3 pillars) */
   .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;}
   .pillar{background:#fff;border:1px solid var(--line);border-radius:26px;padding:38px 28px;text-align:center;box-shadow:0 12px 34px rgba(224,115,92,.05);}
-  .pillar .ic{width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 20px;}
-  .pillar:nth-child(1) .ic{background:var(--coral-soft);}
-  .pillar:nth-child(2) .ic{background:var(--mint-soft);}
-  .pillar:nth-child(3) .ic{background:var(--coral-soft);}
+  .pillar .ic{width:78px;height:78px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
   .pillar h3{font-size:19px;font-weight:800;color:var(--ink);margin-bottom:11px;}
   .pillar p{font-size:14px;color:var(--ink-2);line-height:1.9;font-weight:500;}
   @media(max-width:740px){.pillars{grid-template-columns:1fr;gap:14px;}}
@@ -417,8 +432,8 @@
       <div class="acard reveal"><div class="anum">3</div><h4>つまずいたら、すぐ聞ける</h4><p>質問し放題。手が止まったら、その場で解決できる環境です。</p></div>
     </div>
     <div class="dialog reveal">
-      <div class="dline"><div class="who s">🙋‍♀️</div><div class="msg"><b>受講生</b>サイトに載せる文章が、うまく書けなくて…。</div></div>
-      <div class="dline"><div class="who c">👩‍🏫</div><div class="msg"><b>コーチ</b>AIに「誰に・何を伝えたいか」を入れてみましょう。出てきた文章を少し直すだけで、ぐっと良くなりますよ。最初は、それで十分です。</div></div>
+      <div class="dline"><div class="who s"><img src="images/avatar-student.png" alt="受講生"></div><div class="msg"><b>受講生</b>サイトに載せる文章が、うまく書けなくて…。</div></div>
+      <div class="dline"><div class="who c"><img src="images/avatar-coach.png" alt="コーチ"></div><div class="msg"><b>コーチ</b>AIに「誰に・何を伝えたいか」を入れてみましょう。出てきた文章を少し直すだけで、ぐっと良くなりますよ。最初は、それで十分です。</div></div>
     </div>
   </div>
 </section>
@@ -450,9 +465,9 @@
       <p class="ssub reveal">プログラミングを学ぶのではなく、AIで自分のサービスを作る。技術を覚えるのではなく、自分の働き方を、自分の手で再設計する。</p>
     </div>
     <div class="pillars">
-      <div class="pillar reveal"><div class="ic">⌨️</div><h3>つくる</h3><p>日本語の指示で、Webサイト・アプリ・画像・動画をAIでつくれるように。</p></div>
-      <div class="pillar reveal"><div class="ic">💼</div><h3>稼ぐ</h3><p>つくる力を「お金」に変える。営業・案件獲得まで一緒に伴走します。</p></div>
-      <div class="pillar reveal"><div class="ic">👭</div><h3>つながる</h3><p>女性だけのコミュニティ。孤独にならず、比べずに、続けられる。</p></div>
+      <div class="pillar reveal"><div class="ic"><img src="images/icon-create.png" alt=""></div><h3>つくる</h3><p>日本語の指示で、Webサイト・アプリ・画像・動画をAIでつくれるように。</p></div>
+      <div class="pillar reveal"><div class="ic"><img src="images/icon-earn.png" alt=""></div><h3>稼ぐ</h3><p>つくる力を「お金」に変える。営業・案件獲得まで一緒に伴走します。</p></div>
+      <div class="pillar reveal"><div class="ic"><img src="images/icon-connect.png" alt=""></div><h3>つながる</h3><p>女性だけのコミュニティ。孤独にならず、比べずに、続けられる。</p></div>
     </div>
   </div>
 </section>
@@ -523,10 +538,10 @@
       <p class="ssub reveal">「続けられるかな」が、いちばんの不安。だから、ひとりにしません。</p>
     </div>
     <div class="support">
-      <div class="scard reveal"><div class="ic">🧭</div><h4>コーチング</h4><p>定期的に理想の働き方とゴールを一緒に設計。迷ったら立ち返れる。</p></div>
-      <div class="scard reveal"><div class="ic">👭</div><h4>女性コミュニティ</h4><p>同じ立場の仲間と支え合う。質問も相談も、安心してできる場所。</p></div>
-      <div class="scard reveal"><div class="ic">🙋‍♀️</div><h4>グループコンサル</h4><p>週に数回の壁打ちで、つまずきをその場で解消。手が止まらない。</p></div>
-      <div class="scard reveal"><div class="ic">🎓</div><h4>卒業生Alumni</h4><p>卒業後もつながり続ける。仕事の紹介や情報交換が生まれる。</p></div>
+      <div class="scard reveal"><div class="ic"><img src="images/icon-coaching.png" alt=""></div><h4>コーチング</h4><p>定期的に理想の働き方とゴールを一緒に設計。迷ったら立ち返れる。</p></div>
+      <div class="scard reveal"><div class="ic"><img src="images/icon-community.png" alt=""></div><h4>女性コミュニティ</h4><p>同じ立場の仲間と支え合う。質問も相談も、安心してできる場所。</p></div>
+      <div class="scard reveal"><div class="ic"><img src="images/icon-group.png" alt=""></div><h4>グループコンサル</h4><p>週に数回の壁打ちで、つまずきをその場で解消。手が止まらない。</p></div>
+      <div class="scard reveal"><div class="ic"><img src="images/icon-alumni.png" alt=""></div><h4>卒業生Alumni</h4><p>卒業後もつながり続ける。仕事の紹介や情報交換が生まれる。</p></div>
     </div>
   </div>
 </section>
@@ -542,11 +557,23 @@
       <p class="ssub reveal">むずかしそうな名前ですが、やることはシンプル。AIに「こんなサイトを作って」と“話しかける”だけで、Webサイトやアプリが形になる、いま世界で広がっている新しいものづくりの方法です。</p>
     </div>
     <div class="vibe-steps">
-      <div class="vstep reveal"><div class="vic">💬</div><div class="vn">STEP 01</div><h4>日本語で“お願い”する</h4><p>「カフェの予約サイトを作って」と、ふだんの言葉で伝えるだけ。</p></div>
-      <div class="vstep reveal"><div class="vic">🤖</div><div class="vn">STEP 02</div><h4>AIがつくってくれる</h4><p>面倒な専門作業（コード）は、ぜんぶAIにおまかせ。</p></div>
-      <div class="vstep reveal"><div class="vic">🖥️</div><div class="vn">STEP 03</div><h4>見て、言葉で直す</h4><p>できあがりを見ながら「ここを青く」と話すだけで完成へ。</p></div>
+      <div class="vstep reveal"><div class="vic"><img src="images/icon-step-talk.png" alt=""></div><div class="vn">STEP 01</div><h4>日本語で“お願い”する</h4><p>「カフェの予約サイトを作って」と、ふだんの言葉で伝えるだけ。</p></div>
+      <div class="vstep reveal"><div class="vic"><img src="images/icon-step-ai.png" alt=""></div><div class="vn">STEP 02</div><h4>AIがつくってくれる</h4><p>面倒な専門作業（コード）は、ぜんぶAIにおまかせ。</p></div>
+      <div class="vstep reveal"><div class="vic"><img src="images/icon-step-screen.png" alt=""></div><div class="vn">STEP 03</div><h4>見て、言葉で直す</h4><p>できあがりを見ながら「ここを青く」と話すだけで完成へ。</p></div>
     </div>
     <p class="vibe-note reveal">コードが書けなくても、センスや専門知識がなくても大丈夫。<br>“言葉にできれば、つくれる”時代です。</p>
+
+    <div class="vibe-demo reveal">
+      <div class="vibe-demo-head">
+        <span class="vd-tag">無料体験</span>
+        <h3>実際に、やってみよう。</h3>
+        <p>アイデアを選んで「ジェネレート」を押すだけ。AIがコードを書いて、動くアプリができる体験をここで。</p>
+      </div>
+      <div class="vibe-frame">
+        <iframe src="vibe-sandbox.html" title="SHEcraft バイブコーディング体験" loading="lazy"></iframe>
+      </div>
+      <div class="vibe-demo-foot"><a href="vibe-sandbox.html" target="_blank" rel="noopener" class="btn-ghost">別タブで大きく開く　→</a></div>
+    </div>
   </div>
 </section>
 
@@ -639,7 +666,7 @@
     </div>
     <div class="fit">
       <div class="fitcard yes reveal">
-        <h4>🌸 向いている人</h4>
+        <h4><img src="images/icon-flower.png" alt=""> 向いている人</h4>
         <ul>
           <li>育休・時短・在宅で、自分らしい働き方を探している</li>
           <li>AIは未経験。でも「つくれるようになりたい」</li>
@@ -722,10 +749,10 @@
       <p class="ssub reveal">運営も、進め方も、お金のことも。引っかかりをなくしてから始められます。</p>
     </div>
     <div class="support">
-      <div class="scard reveal"><div class="ic">🏢</div><h4>法人運営で安心</h4><p>AIコンサル会社・株式会社YOHAKUが運営。連絡先や規約もきちんと明記しています。</p></div>
-      <div class="scard reveal"><div class="ic">🙆‍♀️</div><h4>女性中心の運営</h4><p>相談しやすい雰囲気を大切に。デリケートな悩みも、気軽に話せます。</p></div>
-      <div class="scard reveal"><div class="ic">🤝</div><h4>無理な勧誘なし</h4><p>説明会は無料・オンライン。納得してから、自分のペースで始められます。</p></div>
-      <div class="scard reveal"><div class="ic">🌱</div><h4>少人数で伴走</h4><p>1期は少人数限定。一人ひとりに目が届く体制でサポートします。</p></div>
+      <div class="scard reveal"><div class="ic"><img src="images/icon-company.png" alt=""></div><h4>法人運営で安心</h4><p>AIコンサル会社・株式会社YOHAKUが運営。連絡先や規約もきちんと明記しています。</p></div>
+      <div class="scard reveal"><div class="ic"><img src="images/icon-women.png" alt=""></div><h4>女性中心の運営</h4><p>相談しやすい雰囲気を大切に。デリケートな悩みも、気軽に話せます。</p></div>
+      <div class="scard reveal"><div class="ic"><img src="images/icon-handshake.png" alt=""></div><h4>無理な勧誘なし</h4><p>説明会は無料・オンライン。納得してから、自分のペースで始められます。</p></div>
+      <div class="scard reveal"><div class="ic"><img src="images/icon-grow.png" alt=""></div><h4>少人数で伴走</h4><p>1期は少人数限定。一人ひとりに目が届く体制でサポートします。</p></div>
     </div>
   </div>
 </section>
