@@ -95,14 +95,21 @@
   .ssub{font-size:15.5px;color:var(--ink-2);margin-top:18px;line-height:2.05;font-weight:500;}
   @media(max-width:740px){section{padding:68px 0;} .stitle{font-size:25px;}}
 
-  /* HERO（完成版バナー画像・全幅／ヘッダー帯と被らないよう上に余白） */
-  .hero{position:relative;padding:78px 0 0;background:#FFF6F2;}
+  /* HERO（完成版バナー画像・全幅／ヘッダーに上部を重ねる） */
+  .hero{position:relative;padding:0;background:#FFF6F2;}
   .hero-img{width:100%;display:block;}
-  @media(max-width:740px){.hero{padding-top:64px;}}
   /* 強調（“ ”の多用をやめ、色で見せる） */
   .em{color:var(--coral-d);font-weight:700;font-style:normal;}
   /* PC専用の改行（スマホでは自然折り返しにして不自然な改行を防ぐ） */
   @media(max-width:560px){br.brpc{display:none;}}
+  /* 改行の美しさ：1文字だけ次行に落ちる孤立行・端数行を防ぐ（プロ仕上げ・禁則） */
+  .stitle,.ssub,.about-state,.hero h1,.repmsg .rlead,.bridge,.vibe-note,.fcta h2,.fcta p,
+  .pcard h3,.reason h3,.acard h4,.scard h4,.pillar h3,.area-b h4,.vstep h4,
+  .about-desc,.rbody,.acard p,.scard p,.pillar p,.area-b p,.vstep p,.reason li,
+  .faq .a,.voice,.rm-desc,.cases-note,.rm-note,.brand p,.dline .msg{text-wrap:balance;}
+  .case-row{text-wrap:pretty;}
+  /* 禁則：行頭に句読点・閉じ括弧が来ないように */
+  body{line-break:strict;}
 
   /* role models */
   .rm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:48px;}
