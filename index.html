@@ -244,6 +244,7 @@
   /* カフェサイト（プレビュー＆完成 共通） */
   /* ===== 完成サイト：カフェ独自の温かいコーヒー配色でリアルに ===== */
   .cafe{flex:1;display:flex;flex-direction:column;background:#FBF6EE;border:1px solid #ECE0D2;border-radius:12px;overflow:hidden;box-shadow:0 8px 22px rgba(60,46,42,.08);font-family:"Noto Sans JP",sans-serif;}
+  .cafe>*{flex:0 0 auto;}/* 子要素を潰さない（プレビュー崩れ防止） */
   .cafe-bar{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:#FFFDF9;border-bottom:1px solid #EEE3D6;}
   .cafe-brand{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:16px;color:#3B2C26;letter-spacing:.06em;}
   .cafe-nav{display:flex;gap:10px;}
@@ -258,7 +259,7 @@
   .cafe-ttl{position:relative;font-family:"Cormorant Garamond",serif;font-weight:600;font-size:28px;line-height:1.04;color:#FFF7EC;margin:5px 0 0;letter-spacing:.02em;}
   .cafe-tag{position:relative;font-size:10px;color:#EAD9C4;margin-top:5px;letter-spacing:.06em;}
   .cafe-cta{position:relative;display:inline-block;margin-top:13px;border:1px solid rgba(255,243,225,.7);color:#FFF7EC;font-size:9.5px;font-weight:600;letter-spacing:.16em;padding:7px 22px;border-radius:2px;}
-  .cafe-menu{padding:14px 18px 4px;}
+  .cafe-menu{display:flex;flex-direction:column;padding:14px 18px 4px;}
   .cafe-menu-h{font-family:"Jost",sans-serif;font-size:9px;letter-spacing:.28em;color:#B08D5B;font-weight:600;text-align:center;margin-bottom:9px;}
   .cafe-menu-h::before,.cafe-menu-h::after{content:"";display:inline-block;width:14px;height:1px;background:#D8C4A8;vertical-align:middle;margin:0 7px;}
   .cafe-item{display:flex;align-items:baseline;gap:6px;padding:5px 0;font-size:11px;color:#4A382E;}
@@ -269,9 +270,18 @@
   .cafe-el{opacity:0;transform:translateY(8px);}
   .cafe-el.show{opacity:1;transform:none;transition:opacity .4s var(--ease),transform .4s var(--ease);}
 
-  /* 3) 完成 */
-  .vd-result{align-items:center;justify-content:center;padding:22px;background:linear-gradient(180deg,#FFFBF9,#FFF3EE);}
-  .vd-result .cafe{max-width:360px;width:100%;flex:0 0 auto;box-shadow:0 18px 44px rgba(60,46,42,.14);}
+  /* 3) 完成（PC＝ブラウザ全面の本物サイト風） */
+  .vd-result{align-items:stretch;background:#FBF6EE;}
+  .vd-result .cafe{width:100%;max-width:none;height:100%;flex:1;border:0;border-radius:0;box-shadow:none;}
+  .vd-result .cafe-hero{padding:18px 24px 17px;}
+  .vd-result .cafe-eyebrow{font-size:8.5px;}
+  .vd-result .cafe-ttl{font-size:33px;}
+  .vd-result .cafe-tag{font-size:11px;margin-top:6px;}
+  .vd-result .cafe-cta{font-size:9.5px;margin-top:11px;padding:7px 24px;}
+  .vd-result .cafe-menu{display:grid;grid-template-columns:1fr 1fr;column-gap:46px;max-width:560px;margin:2px auto 0;padding:14px 24px 8px;}
+  .vd-result .cafe-menu-h{grid-column:1 / -1;font-size:9px;margin-bottom:8px;}
+  .vd-result .cafe-item{font-size:12px;padding:5px 0;}
+  .vd-result .cafe-foot{padding:10px 28px;font-size:9px;}
   .vd-result.on .cafe>*{opacity:0;animation:vdRise .5s var(--ease) forwards;}
   .vd-result.on .cafe>*:nth-child(1){animation-delay:.05s;}
   .vd-result.on .cafe>*:nth-child(2){animation-delay:.2s;}
@@ -283,16 +293,26 @@
   @media(max-width:640px){
     .vd-stage{height:430px;}
     .vd-build{flex-direction:column;}
-    .vd-editor{width:100%;height:168px;}
+    .vd-editor{width:100%;height:288px;}
     .vd-preview{flex:1;padding:12px 12px 14px;}
-    .vd-code-area{font-size:11px;}
+    .vd-ed-body{font-size:10px;line-height:1.6;}/* gutterとコードの行高を揃える（ズレ防止）＋全行収める */
+    .vd-ed-top{padding:9px 14px;font-size:10px;}
+    .vd-gutter{width:30px;}
     .vd-chat{padding:20px 16px;gap:12px;}
     .vd-row{max-width:100%;}
     .vd-ava{width:30px;height:30px;}
     .vd-row.user .vd-ava{display:none;}
     .vd-msg{font-size:13px;padding:11px 14px;max-width:180px;}
-    .vd-result{padding:14px;}
-    .vd-result .cafe{max-width:300px;}
+    /* スマホ完成＝iPhone画面いっぱいのモバイルサイト（1カラムに戻す） */
+    .vd-result{padding:0;}
+    .vd-result .cafe{max-width:none;}
+    .vd-result .cafe-hero{padding:26px 16px 22px;}
+    .vd-result .cafe-ttl{font-size:31px;}
+    .vd-result .cafe-tag{font-size:10px;margin-top:5px;}
+    .vd-result .cafe-cta{font-size:9.5px;margin-top:13px;padding:7px 22px;}
+    .vd-result .cafe-menu{display:flex;max-width:none;margin:0;padding:14px 18px 4px;}
+    .vd-result .cafe-item{font-size:11.5px;padding:6px 0;}
+    .vd-result .cafe-foot{padding:9px 16px;font-size:8px;}
     .vd-done{top:9px;right:9px;font-size:10px;padding:5px 11px;}
     .vibe-demo-head h3{font-size:20px;}
     .vibe-demo{margin-top:34px;}
@@ -758,6 +778,7 @@
                   <div class="cafe-item cafe-el" data-el="m1"><span>ブレンドコーヒー</span><span class="ln"></span><em>¥520</em></div>
                   <div class="cafe-item cafe-el" data-el="m2"><span>カフェラテ</span><span class="ln"></span><em>¥580</em></div>
                   <div class="cafe-item cafe-el" data-el="m3"><span>モーニングセット</span><span class="ln"></span><em>¥980</em></div>
+                  <div class="cafe-item cafe-el" data-el="m4"><span>本日のスイーツ</span><span class="ln"></span><em>¥480</em></div>
                 </div>
                 <div class="cafe-foot"><span>OPEN 8:00–20:00</span><span>東京・三軒茶屋</span></div>
               </div>
@@ -774,6 +795,7 @@
                 <div class="cafe-item"><span>ブレンドコーヒー</span><span class="ln"></span><em>¥520</em></div>
                 <div class="cafe-item"><span>カフェラテ</span><span class="ln"></span><em>¥580</em></div>
                 <div class="cafe-item"><span>モーニングセット</span><span class="ln"></span><em>¥980</em></div>
+                <div class="cafe-item"><span>本日のスイーツ</span><span class="ln"></span><em>¥480</em></div>
               </div>
               <div class="cafe-foot"><span>OPEN 8:00–20:00</span><span>東京・三軒茶屋</span></div>
             </div>
@@ -1091,7 +1113,7 @@
     var cinema=vd.closest('.vd-cinema'), capEl=document.getElementById('vdCaption');
     var segs=cinema?cinema.querySelectorAll('.vd-pseg i'):[];
     var CAPS={chat:'AIに話しかける',build:'AIがコードを書く',result:'アプリが完成！'};
-    var ORDER=['chat','build','result'], PHDUR={chat:3400,build:5600,result:4200};
+    var ORDER=['chat','build','result'], PHDUR={chat:3400,build:6300,result:4200};
     function progress(name){
       var idx=ORDER.indexOf(name);
       Array.prototype.forEach.call(segs,function(f,i){ f.style.transition='none'; f.style.width=(i<idx?'100%':'0%'); });
@@ -1117,6 +1139,7 @@
       {t:'  <span class="tk-tag">&lt;Item</span> <span class="tk-attr">name</span>=<span class="tk-str">"ブレンドコーヒー"</span> <span class="tk-attr">price</span>=<span class="tk-str">"¥520"</span> <span class="tk-tag">/&gt;</span>', el:'m1'},
       {t:'  <span class="tk-tag">&lt;Item</span> <span class="tk-attr">name</span>=<span class="tk-str">"カフェラテ"</span> <span class="tk-attr">price</span>=<span class="tk-str">"¥580"</span> <span class="tk-tag">/&gt;</span>', el:'m2'},
       {t:'  <span class="tk-tag">&lt;Item</span> <span class="tk-attr">name</span>=<span class="tk-str">"モーニングセット"</span> <span class="tk-attr">price</span>=<span class="tk-str">"¥980"</span> <span class="tk-tag">/&gt;</span>', el:'m3'},
+      {t:'  <span class="tk-tag">&lt;Item</span> <span class="tk-attr">name</span>=<span class="tk-str">"本日のスイーツ"</span> <span class="tk-attr">price</span>=<span class="tk-str">"¥480"</span> <span class="tk-tag">/&gt;</span>', el:'m4'},
       {t:'<span class="tk-tag">&lt;/section&gt;</span>'}
     ];
     function reduced(){ return window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches; }
