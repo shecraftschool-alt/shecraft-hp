@@ -101,6 +101,8 @@
   @media(max-width:740px){.hero{padding-top:64px;}}
   /* 強調（“ ”の多用をやめ、色で見せる） */
   .em{color:var(--coral-d);font-weight:700;font-style:normal;}
+  /* PC専用の改行（スマホでは自然折り返しにして不自然な改行を防ぐ） */
+  @media(max-width:560px){br.brpc{display:none;}}
 
   /* role models */
   .rm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:48px;}
@@ -359,6 +361,11 @@
   .scard h4{font-size:16px;font-weight:800;color:var(--ink);margin:13px 0 9px;}
   .scard p{font-size:12.5px;color:var(--ink-2);line-height:1.8;font-weight:500;}
   @media(max-width:860px){.support{grid-template-columns:1fr 1fr;gap:12px;}}
+  /* 安心バー（trust スリム版） */
+  .trust-strip{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 30px;}
+  .trust-strip span{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:700;color:var(--ink-2);}
+  .trust-strip span img{width:30px;height:30px;object-fit:contain;}
+  @media(max-width:560px){.trust-strip{gap:12px 18px;} .trust-strip span{font-size:12.5px;} .trust-strip span img{width:26px;height:26px;}}
 
   /* learn (4 areas) */
   .areas{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:50px;}
@@ -616,7 +623,7 @@
   <div class="wrap center">
     <span class="eyebrow reveal">ABOUT</span>
     <h2 class="stitle reveal">SHEcraft<span class="accent">とは？</span></h2>
-    <p class="about-state reveal">SHEcraft（シークラフト）は、<br>女性のための、AIクリエイタースクールです。</p>
+    <p class="about-state reveal">SHEcraft（シークラフト）は、<br class="brpc">女性のためのAIクリエイタースクールです</p>
     <p class="about-desc reveal">AIを使って、Webサイト・アプリ・画像・動画を<span class="em">自分の手でつくれる</span>ように。「AIに話しかけてつくる」（＝いま話題のバイブコーディング）を主軸に学び、自分の作品（ポートフォリオ）を持って、副業・案件獲得までを目指す、実践型スクールです。最初の90日で<span class="em">つくれる</span>を実感し、半年かけてじっくり案件獲得まで伴走します。プログラミングは未経験でも大丈夫。育休・時短・在宅といった、あなたのライフステージに合わせて進められます。</p>
     <div class="facts">
       <div class="fact reveal"><div class="ft">期間</div><div class="fv">半年伴走<br>90日でつくる目安</div></div>
@@ -632,11 +639,11 @@
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">DON'T WORRY</span>
-      <h2 class="stitle reveal">AI・プログラミング未経験でも、<span class="accent">大丈夫</span>。</h2>
-      <p class="ssub reveal">受講生のほとんどが、未経験スタートを想定。「ついていけるかな」を、仕組みで解消します。</p>
+      <h2 class="stitle reveal">AI・プログラミング未経験でも<br><span class="accent">大丈夫</span></h2>
+      <p class="ssub reveal">受講生のほとんどが、未経験からのスタート<br>「ついていけるかな」は仕組みで解消します</p>
     </div>
     <div class="assure">
-      <div class="acard reveal"><div class="anum">1</div><h4>ゼロから、手を動かして覚える</h4><p>最初はマニュアル通りに。1日30分から進む、未経験前提のカリキュラムです。</p></div>
+      <div class="acard reveal"><div class="anum">1</div><h4>ゼロから手を動かして覚える</h4><p>最初はマニュアル通りに。<br>1日30分から進む、未経験前提のカリキュラムです。</p></div>
       <div class="acard reveal"><div class="anum">2</div><h4>女性コーチ・女性コミュニティ</h4><p>受講生もサポートも女性中心。同じ立場の仲間がいるから、置いていかれません。</p></div>
       <div class="acard reveal"><div class="anum">3</div><h4>つまずいたら、すぐ聞ける</h4><p>質問し放題。手が止まったら、その場で解決できる環境です。</p></div>
     </div>
@@ -652,8 +659,8 @@
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">YOUR FUTURE</span>
-      <h2 class="stitle reveal">SHEcraftで、<span class="accent">叶う働き方</span>。</h2>
-      <p class="ssub reveal">「私らしく働く」を、AIで実現する。SHEcraftが目指す、卒業後の姿です。</p>
+      <h2 class="stitle reveal">SHEcraftで<span class="accent">叶う働き方</span></h2>
+      <p class="ssub reveal">「私らしく働く」をAIで実現する<br>SHEcraftが目指す、卒業後の姿です</p>
     </div>
     <div class="rm-grid">
       <div class="rm reveal"><img class="ph" src="images/future-01.jpg" alt="育休中に、自宅でノートPCで小さな仕事を始める女性"><div class="rm-body"><div class="rm-tag">在宅 × 副業</div><div class="rm-ttl">育休中に、自分名義の<br>サービスを持つ</div><div class="rm-desc">家にいながら、AIで作ったサイトや作品で小さな受注を始める。</div></div></div>
@@ -665,58 +672,19 @@
   </div>
 </section>
 
-<!-- OUR STYLE (3 pillars) -->
-<section id="style">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow reveal">OUR STYLE</span>
-      <h2 class="stitle reveal">「学ぶ」より、<span class="accent">「つくる」</span>。</h2>
-      <p class="ssub reveal">プログラミングを学ぶのではなく、AIで自分のサービスを作る。技術を覚えるのではなく、自分の働き方を、自分の手で再設計する。</p>
-    </div>
-    <div class="pillars">
-      <div class="pillar reveal"><div class="ic"><img src="images/icon-create.png" alt=""></div><h3>つくる</h3><p>日本語の指示で、Webサイト・アプリ・画像・動画をAIでつくれるように。</p></div>
-      <div class="pillar reveal"><div class="ic"><img src="images/icon-earn.png" alt=""></div><h3>稼ぐ</h3><p>つくる力を「お金」に変える。営業・案件獲得まで一緒に伴走します。</p></div>
-      <div class="pillar reveal"><div class="ic"><img src="images/icon-connect.png" alt=""></div><h3>つながる</h3><p>女性だけのコミュニティ。孤独にならず、比べずに、続けられる。</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- MVV / PROMISE -->
-<section class="band-blush soft">
-  <span class="blob c" style="width:360px;height:360px;top:-130px;left:-90px;"></span>
-  <span class="blob m" style="width:400px;height:400px;bottom:-150px;right:-100px;"></span>
-  <div class="wrap center">
-    <span class="eyebrow reveal">OUR MISSION & VISION</span>
-    <h2 class="stitle reveal">SHEcraftは、<span class="accent">AIスクールではない</span>。</h2>
-    <p class="ssub reveal">スキル習得はゴールではなく、通過点。女性が、自分の手で人生を再設計するための場所であり続けます。</p>
-    <div class="promise">
-      <div class="pcard reveal">
-        <div class="lab">Mission</div>
-        <h3 class="zen">AIで<span class="em">つくる力</span>を女性に渡し、<br>自分の人生を、自分の手で再設計する。</h3>
-        <p>つくれる → 稼げる、までやりきる。頑張っている人が、ちゃんと報われる世界をつくります。</p>
-      </div>
-      <div class="pcard reveal">
-        <div class="lab">Vision</div>
-        <h3 class="zen">ライフステージに、<br>選択肢を奪われない社会へ。</h3>
-        <p>育休も、時短も、在宅も、その選択が「キャリアの停滞」にならない世界を目指します。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- REASONS (2 axis) -->
 <section>
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">WHY SHEcraft</span>
-      <h2 class="stitle reveal">SHEcraftが、<span class="accent">選ばれる理由</span>。</h2>
+      <h2 class="stitle reveal">SHEcraftが<span class="accent">選ばれる理由</span></h2>
     </div>
 
     <div class="reason">
       <img class="ph reveal" src="images/why-01.jpg" alt="窓際でノートPCに向かい、作りながら学ぶ女性">
       <div class="reason-txt reveal">
         <div class="reason-num"><b>01</b>つくる力が、ちゃんと身につく</div>
-        <h3 class="zen">未経験からでも、<br><span class="em">一人で作れる</span>まで。</h3>
+        <h3 class="zen">未経験からでも<br><span class="em">一人で作れる</span>まで</h3>
         <ul>
           <li><span class="ck">✓</span><span>まずマニュアル通りに作り、慣れたら<b>自由課題</b>へ。一歩ずつ<span class="em">作れる</span>が増える。</span></li>
           <li><span class="ck">✓</span><span>1日30分から進められる動画教材で、<b>育児や仕事と両立</b>できる。</span></li>
@@ -727,7 +695,7 @@
     <div class="reason rev">
       <div class="reason-txt reveal">
         <div class="reason-num"><b>02</b>「学んで終わり」にしない</div>
-        <h3 class="zen">作れるだけでなく、<br><span class="em">稼げる</span>ところまで。</h3>
+        <h3 class="zen">作れるだけでなく<br><span class="em">稼げる</span>ところまで</h3>
         <ul>
           <li><span class="ck">✓</span><span>後半は<b>営業フェーズ</b>。提案・受注・納品まで実際の1サイクルを回す。</span></li>
           <li><span class="ck">✓</span><span>CS徹底が、最大の差別化。<b>受講生の成功と満足</b>を、最優先で伴走する。</span></li>
@@ -743,8 +711,8 @@
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">SUPPORT</span>
-      <h2 class="stitle reveal">一人にしない、<span class="accent">サポート体制</span>。</h2>
-      <p class="ssub reveal">「続けられるかな」が、いちばんの不安。だから、ひとりにしません。</p>
+      <h2 class="stitle reveal">一人にしない<span class="accent">サポート体制</span></h2>
+      <p class="ssub reveal">「続けられるかな」が、いちばんの不安。だから、ひとりにしません</p>
     </div>
     <div class="support">
       <div class="scard reveal"><div class="ic"><img src="images/icon-coaching.png" alt=""></div><h4>コーチング</h4><p>定期的に理想の働き方とゴールを一緒に設計。迷ったら立ち返れる。</p></div>
@@ -858,7 +826,7 @@
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">WHAT YOU LEARN</span>
-      <h2 class="stitle reveal">AIで、<span class="accent">これだけ作れる</span>ように。</h2>
+      <h2 class="stitle reveal">AIで<span class="accent">これだけ作れる</span>ように</h2>
       <p class="ssub reveal">「AIに話しかけてつくる」を主軸に、4つの領域を半年でひとつずつ自分のものにします。</p>
     </div>
     <div class="areas">
@@ -875,7 +843,7 @@
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">FLOW</span>
-      <h2 class="stitle reveal">入会後の、<span class="accent">受講の流れ</span>。</h2>
+      <h2 class="stitle reveal">入会後の<span class="accent">受講の流れ</span></h2>
       <p class="ssub reveal">「入ったあと、何をするの？」がはっきり分かるように。90日で<span class="em">つくれる</span>、半年で<span class="em">稼げる</span>まで、5つのステップで進みます。</p>
     </div>
     <div class="flow">
@@ -909,7 +877,7 @@
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">BEFORE → AFTER</span>
-      <h2 class="stitle reveal">学んで、<span class="accent">こう変わる</span>。</h2>
+      <h2 class="stitle reveal">学んで<span class="accent">こう変わる</span></h2>
       <p class="ssub reveal">AIで「つくる」を身につけた女性の、Before / After。自分ごととしてイメージしてみてください。</p>
     </div>
     <div class="cases">
@@ -953,7 +921,7 @@
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">COMPARISON</span>
-      <h2 class="stitle reveal">他のスクールとの、<span class="accent">違い</span>。</h2>
+      <h2 class="stitle reveal">他のスクールとの<span class="accent">違い</span></h2>
       <p class="ssub reveal">「女性 × AIで作る × 稼ぐまで × 仲間」を全部そなえているのは、SHEcraftだけ。</p>
     </div>
     <div class="cmp reveal">
@@ -981,7 +949,7 @@
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">FOR YOU?</span>
-      <h2 class="stitle reveal">こんな<span class="accent">あなた</span>へ。</h2>
+      <h2 class="stitle reveal">こんな<span class="accent">あなた</span>へ</h2>
       <p class="ssub reveal">20〜40代の女性。育休・時短・在宅で、自分らしい働き方を探しているあなたへ。</p>
     </div>
     <div class="fit">
@@ -991,15 +959,13 @@
           <li>育休・時短・在宅で、自分らしい働き方を探している</li>
           <li>AIは未経験。でも「つくれるようになりたい」</li>
           <li>学ぶだけでなく、収入や実績につなげたい</li>
-          <li>一人だと続かない。仲間と進みたい</li>
         </ul>
       </div>
       <div class="fitcard no reveal">
         <h4>こんな方には不向き</h4>
         <ul>
-          <li>とにかく今すぐ大きく稼ぎたい（楽して即収入）</li>
+          <li>楽して今すぐ大きく稼ぎたい</li>
           <li>手を動かさず、知識だけ集めたい</li>
-          <li>エンジニアとして本格転職だけが目的</li>
           <li>一切サポートはいらない（独学で十分）</li>
         </ul>
       </div>
@@ -1012,7 +978,7 @@
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">FAQ</span>
-      <h2 class="stitle reveal">よくあるご質問。</h2>
+      <h2 class="stitle reveal">よくあるご質問</h2>
     </div>
     <div class="faq">
       <details class="q reveal"><summary>AIもプログラミングも完全に未経験ですが、大丈夫ですか？</summary><div class="a">はい。受講生のほとんどが未経験スタートを想定しています。最初に環境を整え、基礎から丁寧に進むので、「ChatGPTを少し触ったことがある」程度でまったく問題ありません。</div></details>
@@ -1024,32 +990,23 @@
   </div>
 </section>
 
-<!-- BRAND MESSAGE -->
-<section class="band-blush soft brand">
-  <span class="blob m" style="width:340px;height:340px;top:-120px;right:-80px;"></span>
-  <span class="blob c" style="width:380px;height:380px;bottom:-140px;left:-90px;"></span>
-  <div class="wrap">
-    <span class="eyebrow reveal">OUR MESSAGE</span>
-    <h2 class="zen reveal">一度きりの私の人生。<br><span class="accent">「私らしく」</span>を、<br>あきらめなくていい。</h2>
-    <p class="reveal">育休、時短、在宅——働き方に正直でいるほど、選択肢は狭くなる。お金や実績がないと、夢を途中であきらめる。そんな「頑張っている人が報われない」場面を、私たちは何度も見てきました。<br><br>でも、AIは違います。特別な才能もエンジニア経験もいりません。必要なのは「私らしく生きたい」という気持ちだけ。SHEcraftは、その気持ちを<span class="em">形</span>にする道具をあなたの手に渡し、稼ぐところまで一緒に歩きます。</p>
-    <div class="sign reveal">SHEcraft 代表　上山 李菜（かみやま ももな）</div>
-  </div>
-</section>
-
-<!-- 代表メッセージ -->
-<section id="profile">
+<!-- 代表メッセージ（ブランドメッセージ・MVVを統合） -->
+<section class="band-blush soft" id="profile">
+  <span class="blob c" style="width:360px;height:360px;top:-130px;left:-90px;"></span>
+  <span class="blob m" style="width:380px;height:380px;bottom:-140px;right:-90px;"></span>
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">MESSAGE</span>
-      <h2 class="stitle reveal">代表<span class="accent">メッセージ</span>。</h2>
+      <h2 class="stitle reveal">代表<span class="accent">メッセージ</span></h2>
+      <p class="about-state reveal">一度きりの人生<br><span class="accent">「私らしく」</span>を、あきらめなくていい</p>
     </div>
     <div class="repmsg reveal">
       <img class="rep-photo" src="images/rep-momona.png" alt="SHEcraft 代表 上山 李菜">
       <div>
-        <p class="rlead">頑張っている人が、<br>報われる世界をつくりたい。</p>
-        <p class="rbody">学生時代は、バドミントンに打ち込んでいました。でも上を目指すほど、実力やお金がないと続けられない世界で。悔しくて、自分でチームを立ち上げ、大会まで運営しました。</p>
-        <p class="rbody">「何かが足りないから、夢をあきらめる」。そういう場面を、私は何度も見てきました。お店を開いた友人が、集客やSNSが分からずに苦しむ姿も。</p>
-        <p class="rbody">AIとSNSは、その壁を越える力になります。特別な才能やお金がなくても、自分の手でつくって、届けられる。SHEcraftを、あなたが「私らしく」をあきらめなくていい場所にします。一緒に、つくっていきましょう。</p>
+        <p class="rlead">頑張っている人が<br>報われる世界をつくりたい</p>
+        <p class="rbody">育休、時短、在宅。働き方に正直でいるほど、選択肢は狭くなる。お金や実績がないと、夢を途中であきらめてしまう。そんな場面を、私は何度も見てきました。学生時代に打ち込んだバドミントンでも、お店を始めた友人が集客に苦しむ姿でも。</p>
+        <p class="rbody">でもAIは違います。特別な才能もエンジニア経験もいりません。日本語で話しかければ、自分の手でつくって届けられる。学んで終わりにせず、稼ぐところまで一緒に歩く。それがSHEcraftです。</p>
+        <p class="rbody">育休も時短も在宅も、その選択がキャリアの停滞にならない社会へ。あなたが「私らしく」をあきらめなくていい場所を、ここからつくります。一緒に、はじめましょう。</p>
         <div class="rsign">
           <div class="role">SHEcraft 代表</div>
           <div class="rname">上山 李菜<span class="kana">かみやま ももな</span></div>
@@ -1060,19 +1017,14 @@
   </div>
 </section>
 
-<!-- 安心・運営（信頼） -->
-<section class="band-cream" id="trust">
+<!-- 安心・運営（信頼）スリム版 -->
+<section class="band-cream" id="trust" style="padding:46px 0;">
   <div class="wrap">
-    <div class="center">
-      <span class="eyebrow reveal">SAFE START</span>
-      <h2 class="stitle reveal">安心して、<span class="accent">始められる</span>。</h2>
-      <p class="ssub reveal">運営も、進め方も、お金のことも。引っかかりをなくしてから始められます。</p>
-    </div>
-    <div class="support">
-      <div class="scard reveal"><div class="ic"><img src="images/icon-company.png" alt=""></div><h4>規約・連絡先を明記</h4><p>特定商取引法に基づく表記やプライバシーポリシー、連絡先をきちんと公開しています。</p></div>
-      <div class="scard reveal"><div class="ic"><img src="images/icon-women.png" alt=""></div><h4>女性中心の運営</h4><p>相談しやすい雰囲気を大切に。デリケートな悩みも、気軽に話せます。</p></div>
-      <div class="scard reveal"><div class="ic"><img src="images/icon-handshake.png" alt=""></div><h4>無理な勧誘なし</h4><p>説明会は無料・オンライン。納得してから、自分のペースで始められます。</p></div>
-      <div class="scard reveal"><div class="ic"><img src="images/icon-grow.png" alt=""></div><h4>少人数で伴走</h4><p>1期は少人数限定。一人ひとりに目が届く体制でサポートします。</p></div>
+    <div class="trust-strip reveal">
+      <span><img src="images/icon-women.png" alt="">女性中心の運営</span>
+      <span><img src="images/icon-handshake.png" alt="">無理な勧誘なし</span>
+      <span><img src="images/icon-grow.png" alt="">少人数で伴走</span>
+      <span><img src="images/icon-company.png" alt="">規約・連絡先を明記</span>
     </div>
   </div>
 </section>
