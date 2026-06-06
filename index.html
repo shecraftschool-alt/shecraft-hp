@@ -74,10 +74,23 @@
   .nav-links a .en{font-family:"Jost","Noto Sans JP",sans-serif;font-size:13px;font-weight:600;letter-spacing:.16em;color:var(--ink);text-transform:uppercase;line-height:1;}
   .nav-links a .jp{font-size:11px;font-weight:600;color:var(--ink-2);line-height:1;letter-spacing:.04em;}
   .nav-links a:not(.btn):hover .en,.nav-links a:not(.btn):hover .jp{color:var(--coral-d);}
+  /* ハンバーガー（スマホ用） */
+  .nav-burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:42px;height:42px;background:none;border:0;cursor:pointer;padding:0;}
+  .nav-burger span{display:block;width:24px;height:2px;border-radius:2px;background:var(--ink);transition:transform .28s var(--ease),opacity .2s;}
   @media(max-width:860px){
-    /* スマホはヘッダー＝ロゴのみ（メニュー・CTAなし） */
-    .nav-links{display:none;}
     .logo img{height:36px;} header.nav.scrolled .logo img{height:33px;}
+    .nav-burger{display:flex;}
+    .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:6px 0 10px;
+      background:rgba(255,251,249,.97);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);
+      border-top:1px solid var(--line);box-shadow:0 14px 30px rgba(60,46,42,.12);
+      opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .28s var(--ease),transform .28s var(--ease),visibility .28s;}
+    header.nav.open .nav-links{opacity:1;visibility:visible;transform:none;}
+    .nav-links a:not(.btn){flex-direction:row;justify-content:center;gap:8px;padding:15px 24px;border-bottom:1px solid var(--line);}
+    .nav-links a:not(.btn) .en{font-size:12px;letter-spacing:.12em;} .nav-links a:not(.btn) .jp{font-size:13px;}
+    .nav-links a.btn{display:none;}/* メニュー内にCTAは出さない */
+    header.nav.open .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    header.nav.open .nav-burger span:nth-child(2){opacity:0;}
+    header.nav.open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   }
 
   /* section base */
@@ -103,7 +116,7 @@
   .hero{position:relative;padding:64px 0 0;background:#FFF6F2;}
   .hero picture{display:block;width:100%;}
   .hero-img{width:100%;height:auto;display:block;}
-  @media(max-width:860px){.hero{padding-top:54px;}}
+  @media(max-width:860px){.hero{padding-top:0;}}/* スマホはヘッダーに上部を重ねる */
   @media(max-width:640px){.hero picture,.hero-img{width:100%;} .hero-img{height:auto;object-fit:contain;}}
   /* 強調（“ ”の多用をやめ、色で見せる） */
   .em{color:var(--coral-d);font-weight:700;font-style:normal;}
@@ -630,6 +643,7 @@
       <a href="#faq"><span class="en">FAQ</span><span class="jp">よくある質問</span></a>
       <a href="https://line.me/R/ti/p/@595ufzah" target="_blank" rel="noopener" class="btn btn-sm">無料説明会へ</a>
     </nav>
+    <button class="nav-burger" id="navBurger" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -972,6 +986,12 @@
   // nav bg on scroll
   var nav=document.getElementById('nav');
   window.addEventListener('scroll',function(){ nav.classList.toggle('scrolled', window.scrollY>20); },{passive:true});
+  // ハンバーガーメニュー（スマホ）
+  var burger=document.getElementById('navBurger');
+  if(burger){
+    burger.addEventListener('click',function(){ var o=nav.classList.toggle('open'); burger.setAttribute('aria-expanded',o?'true':'false'); });
+    nav.querySelectorAll('.nav-links a').forEach(function(a){ a.addEventListener('click',function(){ nav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }); });
+  }
   // reveal（同じ親の中の要素は時間差で順に表示）
   var io=new IntersectionObserver(function(es){es.forEach(function(e){
     if(e.isIntersecting){
