@@ -564,6 +564,34 @@
   @keyframes spGlow{0%{opacity:0;transform:scale(.7)}60%{opacity:1}100%{opacity:.9;transform:scale(1)}}
   @keyframes spBar{to{width:100%}}
   @media(prefers-reduced-motion:reduce){#splash{display:none!important;}}
+
+  /* ===== Phase1 リファイン追加 ===== */
+  /* FV：PCは全画面風cover、スマホは画像をそのまま（縦長画像差し替え待ち） */
+  @media(min-width:641px){ .hero{min-height:90vh;overflow:hidden;} .hero picture{display:block;height:90vh;} .hero-img{height:90vh;object-fit:cover;object-position:center;} }
+  /* 違い：サポート要素を吸収したスリム行 */
+  .why-support-h{text-align:center;margin-top:54px;font-weight:700;color:var(--ink);font-size:15px;}
+  .why-support{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 28px;margin:14px 0 8px;}
+  .why-support span{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:700;color:var(--ink-2);}
+  .why-support span img{width:30px;height:30px;object-fit:contain;}
+  .why .cmp{margin-top:40px;} #why .cmp{margin-top:40px;}
+  @media(max-width:560px){.why-support{gap:12px 16px;} .why-support span{font-size:12.5px;} .why-support span img{width:26px;height:26px;}}
+  /* 代表メッセージ：写真大きめ＋全文折りたたみ */
+  .repmsg{grid-template-columns:300px 1fr;}
+  .rep-photo-lg{width:300px;height:300px;}
+  .rlead-3{font-family:"Klee One","Zen Kaku Gothic New",cursive;font-size:clamp(20px,3.6vw,30px);font-weight:600;color:var(--coral-d);line-height:1.7;}
+  .rlead-3 .accent{color:var(--coral-d);}
+  .rep-fulltext{margin-top:18px;}
+  .rep-fulltext>summary{cursor:pointer;color:var(--coral-d);font-weight:700;font-size:14px;list-style:none;display:inline-flex;align-items:center;gap:7px;}
+  .rep-fulltext>summary::-webkit-details-marker{display:none;}
+  .rep-fulltext>summary::after{content:"＋";font-weight:400;}
+  .rep-fulltext[open]>summary::after{content:"−";}
+  .rep-fulltext .rbody:first-of-type{margin-top:16px;}
+  @media(max-width:760px){.repmsg{grid-template-columns:1fr;} }
+  @media(max-width:560px){.rep-photo-lg{width:200px;height:200px;}}
+  /* フッター：安心バーを集約 */
+  .foot-trust{font-size:11px;color:#C9B8B2;margin-top:8px;line-height:1.9;}
+  /* スマホ本文フォント可変 */
+  @media(max-width:560px){ body{font-size:clamp(14px,3.7vw,16px);} }
 </style>
 </head>
 <body>
@@ -594,44 +622,48 @@
     <a href="#top" class="logo"><img src="images/shecraft-logo-h.png" alt="SHEcraft シークラフト"></a>
     <nav class="nav-links">
       <a href="#about"><span class="en">About</span><span class="jp">SHEcraftとは？</span></a>
-      <a href="#learn"><span class="en">Learn</span><span class="jp">学べること</span></a>
-      <a href="#support"><span class="en">Support</span><span class="jp">サポート</span></a>
+      <a href="#why"><span class="en">Why</span><span class="jp">選ばれる理由</span></a>
+      <a href="#flow"><span class="en">Flow</span><span class="jp">受講の流れ</span></a>
       <a href="#faq"><span class="en">FAQ</span><span class="jp">よくある質問</span></a>
       <a href="https://line.me/R/ti/p/@595ufzah" target="_blank" rel="noopener" class="btn btn-sm">無料説明会へ</a>
     </nav>
   </div>
 </header>
 
-<!-- HERO -->
+<!-- 1. HERO（PC全幅cover／スマホは別画像に出し分け） -->
 <section class="hero" id="top">
-  <img class="hero-img reveal" src="images/hero.png" alt="私らしく、AIで、つくる。｜女性のための、AIクリエイタースクール SHEcraft">
+  <picture>
+    <!-- TODO: スマホ専用の縦長ヒーロー画像 images/hero-sp.png を用意し、下の source の srcset を差し替える（現状はPC画像で代用・スマホ画像差し替え必須） -->
+    <source media="(max-width:640px)" srcset="images/hero.png">
+    <img class="hero-img reveal" src="images/hero.png" alt="私らしく AIで つくる｜女性のためのAIクリエイタースクール SHEcraft">
+  </picture>
 </section>
 
-<!-- 悩み共感 -->
+<!-- 2. 共感 -->
 <section class="band-blush soft" id="worry">
   <span class="blob c" style="width:340px;height:340px;top:-120px;left:-80px;"></span>
   <span class="blob m" style="width:360px;height:360px;bottom:-130px;right:-90px;"></span>
   <div class="wrap center">
     <span class="eyebrow reveal">YOUR FEELINGS</span>
-    <h2 class="stitle reveal">こんな気持ち、<span class="accent">ありませんか</span>？</h2>
+    <h2 class="stitle reveal">こんな気持ち <span class="accent">ありませんか</span>？</h2>
     <div class="voices">
-      <div class="voice reveal">AIは気になるけど、何から始めればいいか分からない。</div>
-      <div class="voice reveal">子どもや家族との時間を、大事にしながら働きたい。</div>
-      <div class="voice reveal">在宅で、自分のスキルで収入を得られたら…。</div>
-      <div class="voice reveal">会社や誰かに頼りきりじゃない、<span class="em">自分の力</span>がほしい。</div>
-      <div class="voice reveal">私、このままでいいのかな？</div>
+      <div class="voice reveal">AIは気になるけど 何から始めればいいか分からない</div>
+      <div class="voice reveal">子どもや家族との時間を大事にしながら働きたい</div>
+      <div class="voice reveal">在宅で 自分のスキルで収入を得られたら…</div>
+      <div class="voice reveal">会社や誰かに頼りきりじゃない <span class="em">自分の力</span>がほしい</div>
+      <div class="voice reveal">私 このままでいいのかな？</div>
     </div>
-    <p class="bridge reveal">その気持ち、AIで<span class="em">形</span>にできます。</p>
+    <p class="bridge reveal">その気持ち AIで<span class="em">形</span>にできます</p>
   </div>
 </section>
 
-<!-- ABOUT（SHEcraftとは？） -->
+<!-- 3. About（何のスクールか・未経験OKを内包） -->
 <section id="about">
   <div class="wrap center">
     <span class="eyebrow reveal">ABOUT</span>
     <h2 class="stitle reveal">SHEcraft<span class="accent">とは？</span></h2>
-    <p class="about-state reveal">SHEcraft（シークラフト）は、<br class="brpc">女性のためのAIクリエイタースクールです</p>
-    <p class="about-desc reveal">AIを使って、Webサイト・アプリ・画像・動画を<span class="em">自分の手でつくれる</span>ように。「AIに話しかけてつくる」（＝いま話題のバイブコーディング）を主軸に学び、自分の作品（ポートフォリオ）を持って、副業・案件獲得までを目指す、実践型スクールです。最初の90日で<span class="em">つくれる</span>を実感し、半年かけてじっくり案件獲得まで伴走します。プログラミングは未経験でも大丈夫。育休・時短・在宅といった、あなたのライフステージに合わせて進められます。</p>
+    <p class="about-state reveal">SHEcraft（シークラフト）は<br class="brpc">女性のためのAIクリエイタースクールです</p>
+    <p class="about-desc reveal">AIを使って Webサイト・アプリ・画像・動画を<span class="em">自分の手でつくれる</span>ように。「AIに話しかけてつくる」（＝いま話題のバイブコーディング）を主軸に学び 自分の作品を持って 副業・案件獲得までを目指す実践型スクールです。<br class="brpc"><span class="em">プログラミングは未経験でも大丈夫</span>。最初の90日で<span class="em">つくれる</span>を実感し 半年かけて案件獲得まで伴走します。</p>
     <div class="facts">
       <div class="fact reveal"><div class="ft">期間</div><div class="fv">半年伴走<br>90日でつくる目安</div></div>
       <div class="fact reveal"><div class="ft">対象</div><div class="fv">AI・プログラミング<br>未経験OK</div></div>
@@ -641,60 +673,41 @@
   </div>
 </section>
 
-<!-- 未経験でも安心 -->
-<section id="assure">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow reveal">DON'T WORRY</span>
-      <h2 class="stitle reveal">AI・プログラミング未経験でも<br><span class="accent">大丈夫</span></h2>
-      <p class="ssub reveal">受講生のほとんどが、未経験からのスタート<br>「ついていけるかな」は仕組みで解消します</p>
-    </div>
-    <div class="assure">
-      <div class="acard reveal"><div class="anum">1</div><h4>ゼロから手を動かして覚える</h4><p>最初はマニュアル通りに。<br>1日30分から、未経験前提で進めます。</p></div>
-      <div class="acard reveal"><div class="anum">2</div><h4>女性コーチ・女性コミュニティ</h4><p>受講生もサポートも女性中心。同じ立場の仲間がいるから、置いていかれません。</p></div>
-      <div class="acard reveal"><div class="anum">3</div><h4>つまずいたら、すぐ聞ける</h4><p>質問し放題。手が止まったら、その場で解決できる環境です。</p></div>
-    </div>
-    <div class="dialog reveal">
-      <div class="dline"><div class="who s"><img src="images/avatar-student.png" alt="受講生"></div><div class="msg"><b>受講生</b>サイトに載せる文章が、うまく書けなくて…。</div></div>
-      <div class="dline"><div class="who c"><img src="images/avatar-coach.png" alt="コーチ"></div><div class="msg"><b>コーチ</b>AIに「誰に・何を伝えたいか」を入れてみましょう。出てきた文章を少し直すだけで、ぐっと良くなりますよ。最初は、それで十分です。</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ROLE MODELS (叶う働き方) -->
+<!-- 4. 卒業後の姿（叶う働き方） -->
 <section class="band-cream" id="future">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">YOUR FUTURE</span>
       <h2 class="stitle reveal">SHEcraftで<span class="accent">叶う働き方</span></h2>
-      <p class="ssub reveal">「私らしく働く」をAIで実現する<br>SHEcraftが目指す、卒業後の姿です</p>
+      <p class="ssub reveal">「私らしく働く」をAIで実現する<br class="brpc">SHEcraftが目指す 卒業後の姿です</p>
     </div>
     <div class="rm-grid">
-      <div class="rm reveal"><img class="ph" src="images/future-01.jpg" alt="育休中に、自宅でノートPCで小さな仕事を始める女性"><div class="rm-body"><div class="rm-tag">在宅 × 副業</div><div class="rm-ttl">育休中に、自分名義の<br>サービスを持つ</div><div class="rm-desc">家にいながら、AIで作ったサイトや作品で小さな受注を始める。</div></div></div>
-      <div class="rm reveal"><img class="ph" src="images/future-02.jpg" alt="自分の作品を見せる、AIクリエイターの女性"><div class="rm-body"><div class="rm-tag">AIクリエイター</div><div class="rm-ttl">「作れる人」として<br>頼られる存在に</div><div class="rm-desc">画像・動画・サイトを作れる人として、紹介で仕事が広がる。</div></div></div>
-      <div class="rm reveal"><img class="ph" src="images/future-03.jpg" alt="時短勤務の合間に学ぶ女性"><div class="rm-body"><div class="rm-tag">時短 × 社内</div><div class="rm-ttl">時短勤務でも、<br>キャリアを動かす</div><div class="rm-desc">1日30分の学びで、社内でも頼られるAI人材へ。</div></div></div>
-      <div class="rm reveal"><img class="ph" src="images/future-04.jpg" alt="自宅のワークスペースで自立して働くフリーランスの女性"><div class="rm-body"><div class="rm-tag">フリーランス</div><div class="rm-ttl">自分の働き方を、<br>自分で設計する</div><div class="rm-desc">営業伴走で1件目を受注。フリーランスとして歩き出す。</div></div></div>
+      <div class="rm reveal"><img class="ph" src="images/future-01.jpg" alt="子どもを隣で遊ばせながら在宅で働く育休中の女性" loading="lazy"><div class="rm-body"><div class="rm-tag">在宅 × 副業</div><div class="rm-ttl">育休中に 自分名義の<br>サービスを持つ</div><div class="rm-desc">家にいながら AIで作ったサイトや作品で小さな受注を始める</div></div></div>
+      <div class="rm reveal"><img class="ph" src="images/future-02.jpg" alt="自分の作品を見せるAIクリエイターの女性" loading="lazy"><div class="rm-body"><div class="rm-tag">AIクリエイター</div><div class="rm-ttl">「作れる人」として<br>頼られる存在に</div><div class="rm-desc">画像・動画・サイトを作れる人として 紹介で仕事が広がる</div></div></div>
+      <div class="rm reveal"><img class="ph" src="images/future-03.jpg" alt="時短勤務の合間に学ぶ女性" loading="lazy"><div class="rm-body"><div class="rm-tag">時短 × 社内</div><div class="rm-ttl">時短勤務でも<br>キャリアを動かす</div><div class="rm-desc">1日30分の学びで 社内でも頼られるAI人材へ</div></div></div>
+      <div class="rm reveal"><img class="ph" src="images/future-04.jpg" alt="自宅のワークスペースで働くフリーランスの女性" loading="lazy"><div class="rm-body"><div class="rm-tag">フリーランス</div><div class="rm-ttl">自分の働き方を<br>自分で設計する</div><div class="rm-desc">営業伴走で1件目を受注 フリーランスとして歩き出す</div></div></div>
     </div>
-    <p class="rm-note reveal">※ 上記はSHEcraftが目指す卒業後の姿（想定イメージ）です。1期生の実例は順次掲載予定。</p>
+    <p class="rm-note reveal">※ SHEcraftが目指す卒業後の姿（想定イメージ）です 1期生の実例は順次掲載予定</p>
   </div>
 </section>
 
-<!-- REASONS (2 axis) -->
-<section>
+<!-- 5. 違い（なぜSHEcraftか）＝ reasons ＋ support ＋ compare -->
+<section id="why">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">WHY SHEcraft</span>
-      <h2 class="stitle reveal">SHEcraftが<span class="accent">選ばれる理由</span></h2>
+      <h2 class="stitle reveal">他のスクールとの<span class="accent">違い</span></h2>
+      <p class="ssub reveal">女性 × AIで作る × 稼ぐまで × 仲間<br class="brpc">全部そなえているのはSHEcraftだけ</p>
     </div>
 
     <div class="reason">
-      <img class="ph reveal" src="images/why-01.jpg" alt="窓際でノートPCに向かい、作りながら学ぶ女性">
+      <img class="ph reveal" src="images/why-01.jpg" alt="窓際でノートPCに向かい作りながら学ぶ女性" loading="lazy">
       <div class="reason-txt reveal">
-        <div class="reason-num"><b>01</b>つくる力が、ちゃんと身につく</div>
+        <div class="reason-num"><b>01</b>つくる力が ちゃんと身につく</div>
         <h3 class="zen">未経験からでも<br><span class="em">一人で作れる</span>まで</h3>
         <ul>
-          <li><span class="ck">✓</span><span>まずマニュアル通りに作り、慣れたら<b>自由課題</b>へ。一歩ずつ<span class="em">作れる</span>が増える。</span></li>
-          <li><span class="ck">✓</span><span>1日30分から進められる動画教材で、<b>育児や仕事と両立</b>できる。</span></li>
+          <li><span class="ck">✓</span><span>まずマニュアル通りに作り 慣れたら<b>自由課題</b>へ 一歩ずつ<span class="em">作れる</span>が増える</span></li>
+          <li><span class="ck">✓</span><span>1日30分から進められる動画教材で <b>育児や仕事と両立</b>できる</span></li>
         </ul>
       </div>
     </div>
@@ -704,233 +717,21 @@
         <div class="reason-num"><b>02</b>「学んで終わり」にしない</div>
         <h3 class="zen">作れるだけでなく<br><span class="em">稼げる</span>ところまで</h3>
         <ul>
-          <li><span class="ck">✓</span><span>後半は<b>営業フェーズ</b>。提案・受注・納品まで実際の1サイクルを回す。</span></li>
-          <li><span class="ck">✓</span><span>CS徹底が、最大の差別化。<b>受講生の成功と満足</b>を、最優先で伴走する。</span></li>
+          <li><span class="ck">✓</span><span>後半は<b>営業フェーズ</b> 提案・受注・納品まで実際の1サイクルを回す</span></li>
+          <li><span class="ck">✓</span><span>CS徹底が最大の差別化 <b>受講生の成功と満足</b>を最優先で伴走する</span></li>
         </ul>
       </div>
-      <img class="ph reveal" src="images/why-02.jpg" alt="自宅でオンライン打ち合わせをし、案件を受注する女性">
+      <img class="ph reveal" src="images/why-02.jpg" alt="自宅でオンライン打ち合わせをし案件を受注する女性" loading="lazy">
     </div>
-  </div>
-</section>
 
-<!-- SUPPORT -->
-<section id="support">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow reveal">SUPPORT</span>
-      <h2 class="stitle reveal">一人にしない<span class="accent">サポート体制</span></h2>
-      <p class="ssub reveal">「続けられるかな」が、いちばんの不安。だから、ひとりにしません</p>
+    <p class="why-support-h reveal">続けられる仕組みも そろっています</p>
+    <div class="why-support reveal">
+      <span><img src="images/icon-coaching.png" alt="">コーチング</span>
+      <span><img src="images/icon-community.png" alt="">女性コミュニティ</span>
+      <span><img src="images/icon-group.png" alt="">グループコンサル</span>
+      <span><img src="images/icon-alumni.png" alt="">卒業生Alumni</span>
     </div>
-    <div class="support">
-      <div class="scard reveal"><div class="ic"><img src="images/icon-coaching.png" alt=""></div><h4>コーチング</h4><p>定期的に理想の働き方とゴールを一緒に設計。迷ったら立ち返れる。</p></div>
-      <div class="scard reveal"><div class="ic"><img src="images/icon-community.png" alt=""></div><h4>女性コミュニティ</h4><p>同じ立場の仲間と支え合う。質問も相談も、安心してできる場所。</p></div>
-      <div class="scard reveal"><div class="ic"><img src="images/icon-group.png" alt=""></div><h4>グループコンサル</h4><p>週に数回の壁打ちで、つまずきをその場で解消。手が止まらない。</p></div>
-      <div class="scard reveal"><div class="ic"><img src="images/icon-alumni.png" alt=""></div><h4>卒業生Alumni</h4><p>卒業後もつながり続ける。仕事の紹介や情報交換が生まれる。</p></div>
-    </div>
-  </div>
-</section>
 
-<!-- バイブコーディングとは？ -->
-<section class="band-blush soft" id="vibe">
-  <span class="blob c" style="width:340px;height:340px;top:-120px;right:-80px;"></span>
-  <span class="blob m" style="width:360px;height:360px;bottom:-130px;left:-90px;"></span>
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow reveal">KEY SKILL</span>
-      <h2 class="stitle reveal">そもそも、<span class="accent">バイブコーディング</span>って？</h2>
-      <p class="ssub reveal">むずかしそうな名前ですが、やることはシンプル。AIに「こんなサイトを作って」と<span class="em">話しかける</span>だけで、Webサイトやアプリが形になる、いま世界で広がっている新しいものづくりの方法です。</p>
-    </div>
-    <div class="vibe-steps">
-      <div class="vstep reveal"><div class="vic"><img src="images/icon-step-talk.png" alt=""></div><div class="vn">STEP 01</div><h4>日本語で<span class="em">お願い</span>する</h4><p>「カフェの予約サイトを作って」と、ふだんの言葉で伝えるだけ。</p></div>
-      <div class="vstep reveal"><div class="vic"><img src="images/icon-step-ai.png" alt=""></div><div class="vn">STEP 02</div><h4>AIがつくってくれる</h4><p>面倒な専門作業（コード）は、ぜんぶAIにおまかせ。</p></div>
-      <div class="vstep reveal"><div class="vic"><img src="images/icon-step-screen.png" alt=""></div><div class="vn">STEP 03</div><h4>見て、言葉で直す</h4><p>できあがりを見ながら「ここを青く」と話すだけで完成へ。</p></div>
-    </div>
-    <p class="vibe-note reveal">コードが書けなくても、センスや専門知識がなくても大丈夫。<br><span class="em">言葉にできれば、つくれる</span>時代です。</p>
-
-    <div class="vibe-demo reveal">
-      <div class="vibe-demo-head">
-        <h3>たとえば、こんなふうに。</h3>
-        <p>AIに話しかけるだけで、コードが書かれて、アプリが完成します。</p>
-      </div>
-      <div class="vd-cinema">
-        <div class="vd-device">
-          <div class="mac">
-            <img class="mac-img" src="images/macbook.png" alt="">
-            <img class="iphone-img" src="images/iphone.png" alt="">
-          <div class="vdemo" id="vdemo" aria-hidden="true">
-        <div class="vd-bar">
-          <span class="vd-dot r"></span><span class="vd-dot y"></span><span class="vd-dot g"></span>
-          <span class="vd-url">localhost:3000 / cafe-app</span>
-        </div>
-        <div class="vd-stage">
-          <!-- 1) チャットで話しかける -->
-          <div class="vd-phase vd-chat">
-            <div class="vd-row user">
-              <div class="vd-ava me">Me</div>
-              <div><div class="vd-name">あなた</div><div class="vd-msg">カフェの予約サイトを作って</div></div>
-            </div>
-            <div class="vd-row ai">
-              <div class="vd-ava ai"><img src="images/favicon.png" alt=""></div>
-              <div><div class="vd-name">SHEcraft AI</div><div class="vd-msg" id="vdAi"><span class="vd-typing"><i></i><i></i><i></i></span></div></div>
-            </div>
-          </div>
-          <!-- 2) AIがコードを書く＋ライブプレビュー -->
-          <div class="vd-phase vd-build">
-            <div class="vd-editor">
-              <div class="vd-ed-top"><span class="pulse"></span>AI がコードを書いています…</div>
-              <div class="vd-ed-body"><div class="vd-gutter" id="vdGutter"></div><div class="vd-code-area" id="vdCode"></div></div>
-            </div>
-            <div class="vd-preview">
-              <div class="vd-pv-label">Live Preview</div>
-              <div class="cafe">
-                <div class="cafe-bar cafe-el" data-el="nav"><span class="cafe-brand">Lumi</span><span class="cafe-nav"><i>MENU</i><i>ABOUT</i><i>ACCESS</i></span></div>
-                <div class="cafe-hero cafe-el" data-el="hero"><span class="cafe-eyebrow">COFFEE &amp; BAKERY</span><h4 class="cafe-ttl">Cafe Lumi</h4><p class="cafe-tag">あなたの時間に、余白を。</p><span class="cafe-cta">予約する</span></div>
-                <div class="cafe-menu">
-                  <div class="cafe-menu-h">MENU</div>
-                  <div class="cafe-item cafe-el" data-el="m1"><span>ブレンドコーヒー</span><span class="ln"></span><em>¥520</em></div>
-                  <div class="cafe-item cafe-el" data-el="m2"><span>カフェラテ</span><span class="ln"></span><em>¥580</em></div>
-                  <div class="cafe-item cafe-el" data-el="m3"><span>モーニングセット</span><span class="ln"></span><em>¥980</em></div>
-                  <div class="cafe-item cafe-el" data-el="m4"><span>本日のスイーツ</span><span class="ln"></span><em>¥480</em></div>
-                </div>
-                <div class="cafe-foot"><span>OPEN 8:00–20:00</span><span>東京・三軒茶屋</span></div>
-              </div>
-            </div>
-          </div>
-          <!-- 3) 完成 -->
-          <div class="vd-phase vd-result">
-            <div class="vd-done">✓ できた！</div>
-            <div class="cafe">
-              <div class="cafe-bar"><span class="cafe-brand">Lumi</span><span class="cafe-nav"><i>MENU</i><i>ABOUT</i><i>ACCESS</i></span></div>
-              <div class="cafe-hero"><span class="cafe-eyebrow">COFFEE &amp; BAKERY</span><h4 class="cafe-ttl">Cafe Lumi</h4><p class="cafe-tag">あなたの時間に、余白を。</p><span class="cafe-cta">予約する</span></div>
-              <div class="cafe-menu">
-                <div class="cafe-menu-h">MENU</div>
-                <div class="cafe-item"><span>ブレンドコーヒー</span><span class="ln"></span><em>¥520</em></div>
-                <div class="cafe-item"><span>カフェラテ</span><span class="ln"></span><em>¥580</em></div>
-                <div class="cafe-item"><span>モーニングセット</span><span class="ln"></span><em>¥980</em></div>
-                <div class="cafe-item"><span>本日のスイーツ</span><span class="ln"></span><em>¥480</em></div>
-              </div>
-              <div class="cafe-foot"><span>OPEN 8:00–20:00</span><span>東京・三軒茶屋</span></div>
-            </div>
-          </div>
-        </div>
-          </div>
-          </div>
-        </div>
-        <div class="vd-caption" id="vdCaption">AIに話しかける</div>
-        <div class="vd-progress" aria-hidden="true">
-          <span class="vd-play">▶</span>
-          <span class="vd-pseg"><i></i></span>
-          <span class="vd-pseg"><i></i></span>
-          <span class="vd-pseg"><i></i></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LEARN (4 areas + curriculum) -->
-<section class="band-cream" id="learn">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow reveal">WHAT YOU LEARN</span>
-      <h2 class="stitle reveal">AIで<span class="accent">これだけ作れる</span>ように</h2>
-      <p class="ssub reveal">「AIに話しかけてつくる」を主軸に、4つの領域を半年でひとつずつ自分のものにします。</p>
-    </div>
-    <div class="areas">
-      <div class="area reveal"><img class="ph" src="images/learn-01.jpg" alt="ノートPCでWebサイトを作る手元"><div class="area-b"><div class="n">AREA 01 ／ 主軸</div><h4>バイブコーディング</h4><p>日本語の指示でWebサイト・アプリをつくる。</p></div></div>
-      <div class="area reveal"><img class="ph" src="images/learn-02.jpg" alt="タブレットでAI画像作品を扱う様子"><div class="area-b"><div class="n">AREA 02</div><h4>AI画像制作</h4><p>SNS・LP・広告に使える画像を販売レベルで。</p></div></div>
-      <div class="area reveal"><img class="ph" src="images/learn-03.jpg" alt="ノートPCで動画を編集する手元"><div class="area-b"><div class="n">AREA 03</div><h4>AI動画制作</h4><p>ショート動画・PR動画を納品レベルで。</p></div></div>
-      <div class="area reveal"><img class="ph" src="images/learn-04.jpg" alt="提案資料を見せながらオンライン商談する女性"><div class="area-b"><div class="n">AREA 04</div><h4>営業・案件獲得</h4><p>提案から受注・納品まで、実践で身につける。</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- FLOW（受講の流れ） -->
-<section id="flow">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow reveal">FLOW</span>
-      <h2 class="stitle reveal">入会後の<span class="accent">受講の流れ</span></h2>
-      <p class="ssub reveal">「入ったあと、何をするの？」がはっきり分かるように。90日で<span class="em">つくれる</span>、半年で<span class="em">稼げる</span>まで、5つのステップで進みます。</p>
-    </div>
-    <div class="flow">
-      <div class="fstep act reveal">
-        <div class="no"><span class="s">STEP</span><span class="n">01</span></div>
-        <div class="fc"><div class="ftag">まずはここから／無料</div><h4>無料オンライン説明会</h4><p>今の不安や「やってみたいこと」を一緒に整理する45分。勧誘はしません。納得してからのスタートでOK。</p></div>
-      </div>
-      <div class="fstep reveal">
-        <div class="no"><span class="s">STEP</span><span class="n">02</span></div>
-        <div class="fc"><div class="ftag">土台づくり</div><h4>入会・環境構築</h4><p>AIツールを一緒にセットアップ。パソコン1台あればOK。ここで「学ぶ準備」が整います。</p></div>
-      </div>
-      <div class="fstep reveal">
-        <div class="no"><span class="s">STEP</span><span class="n">03</span></div>
-        <div class="fc"><div class="ftag">初級 → 中級 → 上級</div><h4>つくって学ぶ（課題型）</h4><p>まずマニュアル通りに作り、慣れたら自由課題へ。Webサイト→集客サイト→アプリと、作れるものを一歩ずつ増やします。1日30分から。</p></div>
-      </div>
-      <div class="fstep reveal">
-        <div class="no"><span class="s">STEP</span><span class="n">04</span></div>
-        <div class="fc"><div class="ftag">作品集</div><h4>ポートフォリオを公開</h4><p>「私はこれが作れます」を示す作品集サイトを完成・公開。これが次の営業フェーズへの合格条件です。</p></div>
-      </div>
-      <div class="fstep act reveal">
-        <div class="no"><span class="s">STEP</span><span class="n">05</span></div>
-        <div class="fc"><div class="ftag">稼ぐ／案件獲得</div><h4>営業・案件獲得まで伴走</h4><p>提案・受注・納品まで、実際の1サイクルを一緒に回します。学んで終わりにせず、収入につなげるところまで。</p></div>
-      </div>
-    </div>
-    <div class="cta-mid reveal"><a href="https://line.me/R/ti/p/@595ufzah" target="_blank" rel="noopener" class="btn">無料説明会を予約する　→</a></div>
-  </div>
-</section>
-
-<!-- BEFORE / AFTER 事例 -->
-<section class="band-cream" id="cases">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow reveal">BEFORE → AFTER</span>
-      <h2 class="stitle reveal">学んで<span class="accent">こう変わる</span></h2>
-      <p class="ssub reveal">AIで「つくる」を身につけた女性の、Before / After。自分ごととしてイメージしてみてください。</p>
-    </div>
-    <div class="cases">
-      <div class="case reveal">
-        <img class="case-photo" src="images/case-01.jpg" alt="育休中ママのあかりさん">
-        <span class="case-tag">育休中ママ・32歳</span>
-        <div class="case-name">あかり さん</div>
-        <div class="case-ba">
-          <div class="case-row before"><span class="lbl">BEFORE</span>在宅でできるスキルがなく、復帰後の働き方に不安があった。</div>
-          <div class="case-arrow">↓ AIで「つくる」を学んで</div>
-          <div class="case-row after"><span class="lbl">AFTER</span>AIでWebサイトを制作。育休中に、在宅で小さな受注をスタート。</div>
-        </div>
-      </div>
-      <div class="case reveal">
-        <img class="case-photo" src="images/case-02.jpg" alt="時短勤務のゆいさん">
-        <span class="case-tag">時短勤務・38歳</span>
-        <div class="case-name">ゆい さん</div>
-        <div class="case-ba">
-          <div class="case-row before"><span class="lbl">BEFORE</span>時短でキャリアが停滞。資料づくりに毎回時間がかかっていた。</div>
-          <div class="case-arrow">↓ AIで「つくる」を学んで</div>
-          <div class="case-row after"><span class="lbl">AFTER</span>資料も画像もAIで時短作成。社内で頼られ、副業の相談も来るように。</div>
-        </div>
-      </div>
-      <div class="case reveal">
-        <img class="case-photo" src="images/case-03.jpg" alt="フリーランス志望のみなさん">
-        <span class="case-tag">会社員→フリーランス志望・28歳</span>
-        <div class="case-name">みな さん</div>
-        <div class="case-ba">
-          <div class="case-row before"><span class="lbl">BEFORE</span>会社に依存する働き方が不安。手に職がほしかった。</div>
-          <div class="case-arrow">↓ AIで「つくる」を学んで</div>
-          <div class="case-row after"><span class="lbl">AFTER</span>AIクリエイターとして在宅で活動開始。自分の作品で案件を受注。</div>
-        </div>
-      </div>
-    </div>
-    <p class="cases-note reveal">※ 上記はSHEcraftが目指す姿を示す想定のモデルケースです。1期生の実例は順次掲載予定。</p>
-  </div>
-</section>
-
-<!-- COMPARE -->
-<section id="compare">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow reveal">COMPARISON</span>
-      <h2 class="stitle reveal">他のスクールとの<span class="accent">違い</span></h2>
-      <p class="ssub reveal">「女性 × AIで作る × 稼ぐまで × 仲間」を全部そなえているのは、SHEcraftだけ。</p>
-    </div>
     <div class="cmp reveal">
       <table>
         <thead><tr>
@@ -951,69 +752,134 @@
   </div>
 </section>
 
-<!-- FIT -->
-<section id="fit">
+<!-- 6. 受講の流れ（バイブコーディング説明＋デモ＋5ステップ） -->
+<section class="band-blush soft" id="flow">
+  <span class="blob c" style="width:340px;height:340px;top:-120px;right:-80px;"></span>
+  <span class="blob m" style="width:360px;height:360px;bottom:-130px;left:-90px;"></span>
   <div class="wrap">
     <div class="center">
-      <span class="eyebrow reveal">FOR YOU?</span>
-      <h2 class="stitle reveal">こんな<span class="accent">あなた</span>へ</h2>
-      <p class="ssub reveal">20〜40代の女性。育休・時短・在宅で、自分らしい働き方を探しているあなたへ。</p>
+      <span class="eyebrow reveal">HOW IT WORKS</span>
+      <h2 class="stitle reveal">入会後の<span class="accent">受講の流れ</span></h2>
+      <p class="ssub reveal">主軸は「バイブコーディング」 AIに話しかけるだけでWebサイトやアプリが形になります<br class="brpc">90日で<span class="em">つくれる</span> 半年で<span class="em">稼げる</span>まで 5つのステップで進みます</p>
     </div>
-    <div class="fit">
-      <div class="fitcard yes reveal">
-        <h4><img src="images/icon-flower.png" alt=""> 向いている人</h4>
-        <ul>
-          <li>育休・時短・在宅で、自分らしい働き方を探している</li>
-          <li>AIは未経験。でも「つくれるようになりたい」</li>
-          <li>学ぶだけでなく、収入や実績につなげたい</li>
-        </ul>
+      <div class="vibe-demo reveal">
+        <div class="vibe-demo-head">
+          <h3>たとえば こんなふうに</h3>
+          <p>AIに話しかけるだけで コードが書かれて アプリが完成します</p>
+        </div>
+        <div class="vd-cinema">
+          <div class="vd-device">
+            <div class="mac">
+              <img class="mac-img" src="images/macbook.png" alt="" loading="lazy">
+              <img class="iphone-img" src="images/iphone.png" alt="" loading="lazy">
+            <div class="vdemo" id="vdemo" aria-hidden="true">
+          <div class="vd-bar">
+            <span class="vd-dot r"></span><span class="vd-dot y"></span><span class="vd-dot g"></span>
+            <span class="vd-url">localhost:3000 / cafe-app</span>
+          </div>
+          <div class="vd-stage">
+            <div class="vd-phase vd-chat">
+              <div class="vd-row user">
+                <div class="vd-ava me">Me</div>
+                <div><div class="vd-name">あなた</div><div class="vd-msg">カフェの予約サイトを作って</div></div>
+              </div>
+              <div class="vd-row ai">
+                <div class="vd-ava ai"><img src="images/favicon.png" alt=""></div>
+                <div><div class="vd-name">SHEcraft AI</div><div class="vd-msg" id="vdAi"><span class="vd-typing"><i></i><i></i><i></i></span></div></div>
+              </div>
+            </div>
+            <div class="vd-phase vd-build">
+              <div class="vd-editor">
+                <div class="vd-ed-top"><span class="pulse"></span>AI がコードを書いています…</div>
+                <div class="vd-ed-body"><div class="vd-gutter" id="vdGutter"></div><div class="vd-code-area" id="vdCode"></div></div>
+              </div>
+              <div class="vd-preview">
+                <div class="vd-pv-label">Live Preview</div>
+                <div class="cafe">
+                  <div class="cafe-bar cafe-el" data-el="nav"><span class="cafe-brand">Lumi</span><span class="cafe-nav"><i>MENU</i><i>ABOUT</i><i>ACCESS</i></span></div>
+                  <div class="cafe-hero cafe-el" data-el="hero"><span class="cafe-eyebrow">COFFEE &amp; BAKERY</span><h4 class="cafe-ttl">Cafe Lumi</h4><p class="cafe-tag">あなたの時間に、余白を。</p><span class="cafe-cta">予約する</span></div>
+                  <div class="cafe-menu">
+                    <div class="cafe-menu-h">MENU</div>
+                    <div class="cafe-item cafe-el" data-el="m1"><span>ブレンドコーヒー</span><span class="ln"></span><em>¥520</em></div>
+                    <div class="cafe-item cafe-el" data-el="m2"><span>カフェラテ</span><span class="ln"></span><em>¥580</em></div>
+                    <div class="cafe-item cafe-el" data-el="m3"><span>モーニングセット</span><span class="ln"></span><em>¥980</em></div>
+                    <div class="cafe-item cafe-el" data-el="m4"><span>本日のスイーツ</span><span class="ln"></span><em>¥480</em></div>
+                  </div>
+                  <div class="cafe-foot"><span>OPEN 8:00–20:00</span><span>東京・三軒茶屋</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="vd-phase vd-result">
+              <div class="vd-done">✓ できた！</div>
+              <div class="cafe">
+                <div class="cafe-bar"><span class="cafe-brand">Lumi</span><span class="cafe-nav"><i>MENU</i><i>ABOUT</i><i>ACCESS</i></span></div>
+                <div class="cafe-hero"><span class="cafe-eyebrow">COFFEE &amp; BAKERY</span><h4 class="cafe-ttl">Cafe Lumi</h4><p class="cafe-tag">あなたの時間に、余白を。</p><span class="cafe-cta">予約する</span></div>
+                <div class="cafe-menu">
+                  <div class="cafe-menu-h">MENU</div>
+                  <div class="cafe-item"><span>ブレンドコーヒー</span><span class="ln"></span><em>¥520</em></div>
+                  <div class="cafe-item"><span>カフェラテ</span><span class="ln"></span><em>¥580</em></div>
+                  <div class="cafe-item"><span>モーニングセット</span><span class="ln"></span><em>¥980</em></div>
+                  <div class="cafe-item"><span>本日のスイーツ</span><span class="ln"></span><em>¥480</em></div>
+                </div>
+                <div class="cafe-foot"><span>OPEN 8:00–20:00</span><span>東京・三軒茶屋</span></div>
+              </div>
+            </div>
+          </div>
+            </div>
+            </div>
+          </div>
+          <div class="vd-caption" id="vdCaption">AIに話しかける</div>
+          <div class="vd-progress" aria-hidden="true">
+            <span class="vd-play">▶</span>
+            <span class="vd-pseg"><i></i></span>
+            <span class="vd-pseg"><i></i></span>
+            <span class="vd-pseg"><i></i></span>
+          </div>
+        </div>
       </div>
-      <div class="fitcard no reveal">
-        <h4>こんな方には不向き</h4>
-        <ul>
-          <li>楽して今すぐ大きく稼ぎたい</li>
-          <li>手を動かさず、知識だけ集めたい</li>
-          <li>一切サポートはいらない（独学で十分）</li>
-        </ul>
+    <div class="flow">
+      <div class="fstep act reveal">
+        <div class="no"><span class="s">STEP</span><span class="n">01</span></div>
+        <div class="fc"><div class="ftag">まずはここから／無料</div><h4>無料オンライン説明会</h4><p>今の不安や「やってみたいこと」を一緒に整理する45分 勧誘はしません 納得してからのスタートでOK</p></div>
+      </div>
+      <div class="fstep reveal">
+        <div class="no"><span class="s">STEP</span><span class="n">02</span></div>
+        <div class="fc"><div class="ftag">土台づくり</div><h4>入会・環境構築</h4><p>AIツールを一緒にセットアップ パソコン1台あればOK ここで学ぶ準備が整います</p></div>
+      </div>
+      <div class="fstep reveal">
+        <div class="no"><span class="s">STEP</span><span class="n">03</span></div>
+        <div class="fc"><div class="ftag">初級 → 中級 → 上級</div><h4>つくって学ぶ（課題型）</h4><p>マニュアル通りに作り 慣れたら自由課題へ Webサイト→集客サイト→アプリと 作れるものを一歩ずつ増やします 1日30分から</p></div>
+      </div>
+      <div class="fstep reveal">
+        <div class="no"><span class="s">STEP</span><span class="n">04</span></div>
+        <div class="fc"><div class="ftag">作品集</div><h4>ポートフォリオを公開</h4><p>「私はこれが作れます」を示す作品集サイトを完成・公開 次の営業フェーズへの合格条件です</p></div>
+      </div>
+      <div class="fstep act reveal">
+        <div class="no"><span class="s">STEP</span><span class="n">05</span></div>
+        <div class="fc"><div class="ftag">稼ぐ／案件獲得</div><h4>営業・案件獲得まで伴走</h4><p>提案・受注・納品まで 実際の1サイクルを一緒に回します 学んで終わりにせず 収入につなげるところまで</p></div>
       </div>
     </div>
+    <div class="cta-mid reveal"><a href="https://line.me/R/ti/p/@595ufzah" target="_blank" rel="noopener" class="btn">無料説明会を予約する　→</a></div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="band-cream" id="faq">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow reveal">FAQ</span>
-      <h2 class="stitle reveal">よくあるご質問</h2>
-    </div>
-    <div class="faq">
-      <details class="q reveal"><summary>AIもプログラミングも完全に未経験ですが、大丈夫ですか？</summary><div class="a">はい。受講生のほとんどが未経験スタートを想定しています。最初に環境を整え、基礎から丁寧に進むので、「ChatGPTを少し触ったことがある」程度でまったく問題ありません。</div></details>
-      <details class="q reveal"><summary>育児や時短勤務と両立できますか？</summary><div class="a">育休中・時短・在宅の女性を想定して、ゆとりのある半年で設計しています。最初の90日で<span class="em">つくれる</span>を目指し、その後は案件獲得まで伴走。1日30分から進められる教材と、ライフステージに合わせた伴走で、生活に無理なく組み込めます。</div></details>
-      <details class="q reveal"><summary>本当に「稼ぐ」ところまでいけますか？</summary><div class="a">学習だけで終わらせないために、後半に営業（案件獲得）のフェーズを置いています。ポートフォリオづくりから案件提案、受注後の納品・請求まで、実際の1サイクルを一緒に回します。</div></details>
-      <details class="q reveal"><summary>どんなものが作れるようになりますか？</summary><div class="a">バイブコーディングでWebサイト・アプリを。さらにSNSやLP用の画像、ショート動画やPR動画まで。卒業時には、これらを集めた自分のポートフォリオサイトが公開された状態になります。</div></details>
-      <details class="q reveal"><summary>女性しか参加できないのですか？</summary><div class="a">はい。SHEcraftは女性のためのスクールで、コミュニティも女性のみです。同じ立場の仲間がいるから、孤独にならず安心して続けられます。</div></details>
-    </div>
-  </div>
-</section>
-
-<!-- 代表メッセージ（ブランドメッセージ・MVVを統合） -->
-<section class="band-blush soft" id="profile">
-  <span class="blob c" style="width:360px;height:360px;top:-130px;left:-90px;"></span>
-  <span class="blob m" style="width:380px;height:380px;bottom:-140px;right:-90px;"></span>
+<!-- 7. 代表メッセージ（圧縮＋全文は折りたたみ） -->
+<section id="profile">
   <div class="wrap">
     <div class="center">
       <span class="eyebrow reveal">MESSAGE</span>
       <h2 class="stitle reveal">代表<span class="accent">メッセージ</span></h2>
-      <p class="about-state reveal">一度きりの人生<br><span class="accent">「私らしく」</span>を、あきらめなくていい</p>
     </div>
     <div class="repmsg reveal">
-      <img class="rep-photo" src="images/rep-momona.png" alt="SHEcraft 代表 上山 李菜">
+      <img class="rep-photo rep-photo-lg" src="images/rep-momona.png" alt="SHEcraft 代表 上山 李菜" loading="lazy">
       <div>
-        <p class="rlead">頑張っている人が<br>報われる世界をつくりたい</p>
-        <p class="rbody">育休、時短、在宅。働き方に正直でいるほど、選択肢は狭くなる。お金や実績がないと、夢を途中であきらめてしまう。そんな場面を、私は何度も見てきました。学生時代に打ち込んだバドミントンでも、お店を始めた友人が集客に苦しむ姿でも。</p>
-        <p class="rbody">でもAIは違います。特別な才能もエンジニア経験もいりません。日本語で話しかければ、自分の手でつくって届けられる。学んで終わりにせず、稼ぐところまで一緒に歩く。それがSHEcraftです。</p>
-        <p class="rbody">育休も時短も在宅も、その選択がキャリアの停滞にならない社会へ。あなたが「私らしく」をあきらめなくていい場所を、ここからつくります。一緒に、はじめましょう。</p>
+        <p class="rlead-3">一度きりの人生<br><span class="accent">「私らしく」</span>を あきらめなくていい</p>
+        <details class="rep-fulltext reveal">
+          <summary>代表メッセージ全文を読む</summary>
+          <p class="rbody">頑張っている人が報われる世界をつくりたい。育休 時短 在宅。働き方に正直でいるほど 選択肢は狭くなる。お金や実績がないと 夢を途中であきらめてしまう。そんな場面を 私は何度も見てきました。</p>
+          <p class="rbody">でもAIは違います。特別な才能もエンジニア経験もいりません。日本語で話しかければ 自分の手でつくって届けられる。学んで終わりにせず 稼ぐところまで一緒に歩く。それがSHEcraftです。</p>
+          <p class="rbody">育休も時短も在宅も その選択がキャリアの停滞にならない社会へ。あなたが「私らしく」をあきらめなくていい場所を ここからつくります。一緒に はじめましょう。</p>
+        </details>
         <div class="rsign">
           <div class="role">SHEcraft 代表</div>
           <div class="rname">上山 李菜<span class="kana">かみやま ももな</span></div>
@@ -1024,34 +890,54 @@
   </div>
 </section>
 
-<!-- 安心・運営（信頼）スリム版 -->
-<section class="band-cream" id="trust" style="padding:46px 0;">
-  <div class="wrap">
-    <div class="trust-strip reveal">
-      <span><img src="images/icon-women.png" alt="">女性中心の運営</span>
-      <span><img src="images/icon-handshake.png" alt="">無理な勧誘なし</span>
-      <span><img src="images/icon-grow.png" alt="">少人数で伴走</span>
-      <span><img src="images/icon-company.png" alt="">規約・連絡先を明記</span>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="band-blush soft fcta" id="cta">
+<!-- 8. FAQ ＋ 向き不向き ＋ 最終CTA -->
+<section class="band-blush soft" id="faq">
   <span class="blob c" style="width:380px;height:380px;top:-140px;right:-90px;"></span>
   <span class="blob m" style="width:340px;height:340px;bottom:-120px;left:-80px;"></span>
   <div class="wrap">
-    <h2 class="zen reveal">まずは、<span class="accent">無料説明会</span>で<br>「つくりたい」を聞かせてください。</h2>
-    <p class="reveal">押し売りはしません。今のお悩みや、目指したい働き方を一緒に整理する45分です。オンライン（Zoom）・AI未経験OK・勧誘は一切ありません。</p>
-    <div class="cta-points reveal">
-      <span>あなたに合った学び方が分かる</span>
-      <span>カリキュラムの中身を確認できる</span>
-      <span>費用・プランの相談ができる</span>
+    <div class="center">
+      <span class="eyebrow reveal">FAQ</span>
+      <h2 class="stitle reveal">よくあるご質問</h2>
     </div>
-    <div class="row reveal">
-      <a href="https://line.me/R/ti/p/@595ufzah" target="_blank" rel="noopener" class="btn">無料説明会を予約する　→</a>
+    <div class="fit reveal">
+      <div class="fitcard yes">
+        <h4><img src="images/icon-flower.png" alt=""> 向いている人</h4>
+        <ul>
+          <li>育休・時短・在宅で 自分らしい働き方を探している</li>
+          <li>AIは未経験 でも「つくれるようになりたい」</li>
+          <li>学ぶだけでなく 収入や実績につなげたい</li>
+        </ul>
+      </div>
+      <div class="fitcard no">
+        <h4>こんな方には不向き</h4>
+        <ul>
+          <li>楽して今すぐ大きく稼ぎたい</li>
+          <li>手を動かさず 知識だけ集めたい</li>
+          <li>一切サポートはいらない（独学で十分）</li>
+        </ul>
+      </div>
     </div>
-    <div class="note reveal">※ 1期は少人数限定での募集です。LINE追加後、日程調整のご案内が届きます。</div>
+    <div class="faq">
+      <details class="q reveal"><summary>AIもプログラミングも完全に未経験ですが 大丈夫ですか？</summary><div class="a">はい。受講生のほとんどが未経験スタートを想定しています。最初に環境を整え 基礎から丁寧に進むので 「ChatGPTを少し触ったことがある」程度でまったく問題ありません。</div></details>
+      <details class="q reveal"><summary>育児や時短勤務と両立できますか？</summary><div class="a">育休中・時短・在宅の女性を想定して ゆとりのある半年で設計しています。最初の90日で<span class="em">つくれる</span>を目指し その後は案件獲得まで伴走。1日30分から進められる教材で 生活に無理なく組み込めます。</div></details>
+      <details class="q reveal"><summary>本当に「稼ぐ」ところまでいけますか？</summary><div class="a">学習だけで終わらせないために 後半に営業（案件獲得）のフェーズを置いています。ポートフォリオづくりから案件提案 受注後の納品・請求まで 実際の1サイクルを一緒に回します。</div></details>
+      <details class="q reveal"><summary>どんなものが作れるようになりますか？</summary><div class="a">バイブコーディングでWebサイト・アプリを。さらにSNSやLP用の画像 ショート動画やPR動画まで。卒業時には これらを集めた自分のポートフォリオサイトが公開された状態になります。</div></details>
+      <details class="q reveal"><summary>女性しか参加できないのですか？</summary><div class="a">はい。SHEcraftは女性のためのスクールで コミュニティも女性のみです。同じ立場の仲間がいるから 孤独にならず安心して続けられます。</div></details>
+    </div>
+
+    <div class="fcta" style="margin-top:64px;">
+      <h2 class="zen reveal">まずは <span class="accent">無料説明会</span>で<br class="brpc">「つくりたい」を聞かせてください</h2>
+      <p class="reveal">押し売りはしません 今のお悩みや目指したい働き方を一緒に整理する45分です オンライン（Zoom）・AI未経験OK・勧誘は一切ありません</p>
+      <div class="cta-points reveal">
+        <span>あなたに合った学び方が分かる</span>
+        <span>カリキュラムの中身を確認できる</span>
+        <span>費用・プランの相談ができる</span>
+      </div>
+      <div class="row reveal">
+        <a href="https://line.me/R/ti/p/@595ufzah" target="_blank" rel="noopener" class="btn">無料説明会を予約する　→</a>
+      </div>
+      <div class="note reveal">※ 1期は少人数限定での募集です LINE追加後 日程調整のご案内が届きます</div>
+    </div>
   </div>
 </section>
 
@@ -1061,6 +947,7 @@
     <div class="fl">
       <img src="images/shecraft-logo-h-white.png" alt="SHEcraft シークラフト">
       <div>女性のための、AIクリエイタースクール</div>
+      <div class="foot-trust">女性中心の運営 ／ 無理な勧誘なし ／ 少人数で伴走 ／ 規約・連絡先を明記</div>
     </div>
     <div class="fr">
       <a href="tokushoho.html">特定商取引法に基づく表記</a> ／ <a href="privacy.html">プライバシーポリシー</a><br>
