@@ -587,7 +587,7 @@
 
   /* ===== Phase1 リファイン追加 ===== */
   /* FV：PCは全画面風cover、スマホは画像をそのまま（縦長画像差し替え待ち） */
-  @media(min-width:641px){ .hero{min-height:90vh;overflow:hidden;} .hero picture{display:block;height:calc(90vh - 64px);} .hero-img{height:calc(90vh - 64px);object-fit:cover;object-position:center;} }
+  @media(min-width:641px){ .hero picture{display:block;width:100%;} .hero-img{width:100%;height:auto;} }
   /* 違い：サポート要素を吸収したスリム行 */
   .why-support-h{text-align:center;margin-top:54px;font-weight:700;color:var(--ink);font-size:15px;}
   .why-support{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 28px;margin:14px 0 8px;}
