@@ -587,12 +587,8 @@
   .rep-photo-lg{width:300px;height:300px;}
   .rlead-3{font-family:"Klee One","Zen Kaku Gothic New",cursive;font-size:clamp(20px,3.6vw,30px);font-weight:600;color:var(--coral-d);line-height:1.7;}
   .rlead-3 .accent{color:var(--coral-d);}
-  .rep-fulltext{margin-top:18px;}
-  .rep-fulltext>summary{cursor:pointer;color:var(--coral-d);font-weight:700;font-size:14px;list-style:none;display:inline-flex;align-items:center;gap:7px;}
-  .rep-fulltext>summary::-webkit-details-marker{display:none;}
-  .rep-fulltext>summary::after{content:"＋";font-weight:400;}
-  .rep-fulltext[open]>summary::after{content:"−";}
-  .rep-fulltext .rbody:first-of-type{margin-top:16px;}
+  .rep-fulltext{margin-top:16px;}
+  .rep-fulltext .rbody:first-of-type{margin-top:0;}
   @media(max-width:760px){.repmsg{grid-template-columns:1fr;} }
   @media(max-width:560px){.rep-photo-lg{width:200px;height:200px;}}
   /* フッター：安心バーを集約 */
@@ -881,12 +877,11 @@
       <img class="rep-photo rep-photo-lg" src="images/rep-momona.png" alt="SHEcraft 代表 上山 李菜" loading="lazy">
       <div>
         <p class="rlead-3">一度きりの人生<br><span class="accent">「私らしく」</span>を あきらめなくていい</p>
-        <details class="rep-fulltext reveal">
-          <summary>代表メッセージ全文を読む</summary>
+        <div class="rep-fulltext reveal">
           <p class="rbody">頑張っている人が報われる世界をつくりたい。育休 時短 在宅。働き方に正直でいるほど 選択肢は狭くなる。お金や実績がないと 夢を途中であきらめてしまう。そんな場面を 私は何度も見てきました。</p>
           <p class="rbody">でもAIは違います。特別な才能もエンジニア経験もいりません。日本語で話しかければ 自分の手でつくって届けられる。学んで終わりにせず 稼ぐところまで一緒に歩く。それがSHEcraftです。</p>
           <p class="rbody">育休も時短も在宅も その選択がキャリアの停滞にならない社会へ。あなたが「私らしく」をあきらめなくていい場所を ここからつくります。一緒に はじめましょう。</p>
-        </details>
+        </div>
         <div class="rsign">
           <div class="role">SHEcraft 代表</div>
           <div class="rname">上山 李菜<span class="kana">かみやま ももな</span></div>
