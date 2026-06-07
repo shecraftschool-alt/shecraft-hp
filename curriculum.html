@@ -139,6 +139,12 @@
   .foot .fl img{height:46px;margin-bottom:10px;}
   .foot .fr{text-align:right;line-height:2;}
   @media(max-width:560px){.foot{flex-direction:column;} .foot .fr{text-align:left;}}
+  /* コース一覧サムネイル */
+  .thumb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;}
+  .thumb-tile{display:block;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 10px 26px rgba(60,46,42,.08);transition:transform .25s var(--ease),box-shadow .25s var(--ease);}
+  .thumb-tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(60,46,42,.14);}
+  .thumb-tile img{width:100%;height:auto;display:block;}
+  .pcard{scroll-margin-top:80px;}
 </style>
 </head>
 <body>
@@ -188,13 +194,32 @@
   </div>
 </section>
 
+<!-- コース一覧（サムネイル） -->
+<section style="background:#fff;">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>コース<span class="hand">一覧</span></h2>
+      <p>気になるコースをタップすると、詳しい内容にジャンプします。</p>
+    </div>
+    <div class="thumb-grid">
+      <a class="thumb-tile" href="#ph-step0"><img src="images/thumb-step0.jpg" alt="STEP0 土台づくり" loading="lazy"></a>
+      <a class="thumb-tile" href="#ph-step1"><img src="images/thumb-step1.jpg" alt="STEP1 バイブ基礎・初公開" loading="lazy"></a>
+      <a class="thumb-tile" href="#ph-courseA"><img src="images/thumb-courseA.jpg" alt="コースA Webデザイン" loading="lazy"></a>
+      <a class="thumb-tile" href="#ph-courseB"><img src="images/thumb-courseB.jpg" alt="コースB Webアプリ" loading="lazy"></a>
+      <a class="thumb-tile" href="#ph-courseC"><img src="images/thumb-courseC.jpg" alt="コースC AIクリエイティブ" loading="lazy"></a>
+      <a class="thumb-tile" href="#ph-step2"><img src="images/thumb-step2.jpg" alt="STEP2 専門特化ポートフォリオ" loading="lazy"></a>
+      <a class="thumb-tile" href="#ph-step3"><img src="images/thumb-step3.jpg" alt="STEP3 収益化フェーズ" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
 <!-- 共通の土台 -->
 <section style="background:#fff;">
   <div class="wrap">
     <div class="group-label"><span>共通の土台（全員）</span></div>
     <div class="pcards">
 
-      <div class="pcard">
+      <div class="pcard" id="ph-step0">
         <div class="pc-head">
           <div class="pc-badge"><span class="s">STEP</span><span class="n">0</span></div>
           <div class="pc-tt">
@@ -221,7 +246,7 @@
         </details>
       </div>
 
-      <div class="pcard">
+      <div class="pcard" id="ph-step1">
         <div class="pc-head">
           <div class="pc-badge"><span class="s">STEP</span><span class="n">1</span></div>
           <div class="pc-tt">
@@ -256,7 +281,7 @@
     <div class="pick">★ STEP1のあと、興味と目標に合わせて 1つ を選んで深めます（変更・追加受講の相談も可）</div>
     <div class="pcards">
 
-      <div class="pcard course">
+      <div class="pcard course" id="ph-courseA">
         <div class="pc-head">
           <div class="pc-badge"><span class="s">COURSE</span><span class="n">A</span></div>
           <div class="pc-tt">
@@ -281,7 +306,7 @@
         </details>
       </div>
 
-      <div class="pcard course">
+      <div class="pcard course" id="ph-courseB">
         <div class="pc-head">
           <div class="pc-badge"><span class="s">COURSE</span><span class="n">B</span></div>
           <div class="pc-tt">
@@ -306,7 +331,7 @@
         </details>
       </div>
 
-      <div class="pcard course">
+      <div class="pcard course" id="ph-courseC">
         <div class="pc-head">
           <div class="pc-badge"><span class="s">COURSE</span><span class="n">C</span></div>
           <div class="pc-tt">
@@ -341,7 +366,7 @@
     <div class="group-label"><span>仕上げ ＆ 収益化（全員）</span></div>
     <div class="pcards">
 
-      <div class="pcard">
+      <div class="pcard" id="ph-step2">
         <div class="pc-head">
           <div class="pc-badge"><span class="s">STEP</span><span class="n">2</span></div>
           <div class="pc-tt">
@@ -363,7 +388,7 @@
         </details>
       </div>
 
-      <div class="pcard">
+      <div class="pcard" id="ph-step3">
         <div class="pc-head">
           <div class="pc-badge"><span class="s">STEP</span><span class="n">3</span></div>
           <div class="pc-tt">
