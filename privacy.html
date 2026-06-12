@@ -10,10 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  :root{--ink:#3A2E2C;--ink-2:#6F5F5C;--ink-3:#9C8C88;--coral-d:#E0735C;
+  :root{--ink:#3A2E2C;--ink-2:#6F5F5C;--ink-3:#8A7A75;--coral-d:#E0735C;--coral-soft:#FCEBE4;
     --cream:#FFF6F2;--line:#F1E6E0;--footer:#3A2E2C;--maxw:840px;}
   body{font-family:"Noto Sans JP",-apple-system,sans-serif;color:var(--ink-2);background:var(--cream);line-height:1.95;font-size:15px;-webkit-font-smoothing:antialiased;}
   a{color:var(--coral-d);text-decoration:none;} a:hover{text-decoration:underline;}
+  ::selection{background:var(--coral-soft);color:var(--coral-d);}
+  :focus-visible{outline:2px solid var(--coral-d);outline-offset:3px;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
   header.nav{background:rgba(255,251,249,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;}
   .nav-in{max-width:var(--maxw);margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
@@ -26,7 +28,7 @@
   h2{font-size:17px;font-weight:800;color:var(--ink);margin:36px 0 10px;}
   p{font-size:14px;margin-bottom:10px;}
   ul{margin:6px 0 10px 1.2em;} li{margin-bottom:7px;font-size:14px;}
-  footer{background:var(--footer);color:#C9B8B2;padding:30px 0 40px;font-size:12px;line-height:1.9;}
+  footer{background:var(--footer);color:#C9B8B2;padding:30px 0 calc(40px + env(safe-area-inset-bottom));font-size:12px;line-height:1.9;}
   footer a{color:#C9B8B2;}
 </style>
 </head>
